@@ -97,6 +97,44 @@
 
 
 
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8711.png)
 
 
+
+
+
+
+
+
+
+
+
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8712.png)
+
+
+
+
+
+
+
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8713.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8714.png)
+
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8715.png)
 
