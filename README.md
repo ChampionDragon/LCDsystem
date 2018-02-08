@@ -8,133 +8,42 @@
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%871.png)
 
 
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%872.png)
-
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%873.png)
 
 
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%874.png)
-
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%875.png)
 
 
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%876.png)
-
-
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%877.png)
 
 
-
-
-
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%878.png)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%879.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8710.png)
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8711.png)
 
 
-
-
-
-
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8712.png)
-
-
-
-
-
 
 
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8713.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8714.png)
 
-![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8715.png)
 
