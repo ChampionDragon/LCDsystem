@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/lcdtt"
+        android:layout_width="match_parent">
+
+        <TextView
+            style="@style/lcdtt_tv"
+            android:layout_centerInParent="true"
+            android:text="普通设置"/>
+
+        <ImageView
+            android:id="@+id/back_set"
+            style="@style/lcdtt_iv"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/lcdtitle_im"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="66dp">
+
+    <!--    <LinearLayout style="@style/setll">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="亮度设置"/>
+
+            <SeekBar
+                android:id="@+id/seekbar_brightness"
+                android:layout_width="@dimen/setseekbar"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:maxHeight="3dp"
+                android:progressDrawable="@drawable/seekbar_bg"
+                android:thumb="@drawable/seekbar"/>
+
+            <TextView
+                android:id="@+id/tv_brightness"
+                style="@style/setTV"
+                android:layout_marginLeft="33dp"
+                android:text="55"
+                android:textColor="@color/red"/>
+
+            <TextView
+                style="@style/setTV"
+                android:text="/255"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/ll_volunme"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setllhight"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="音量设置"/>
+
+            <SeekBar
+                android:id="@+id/seekbar_volunme"
+                android:layout_width="@dimen/setseekbar"
+                android:layout_height="wrap_content"
+                android:max="15"
+                android:maxHeight="3dp"
+                android:progressDrawable="@drawable/seekbar_bg"
+                android:thumb="@drawable/seekbar"/>
+
+            <TextView
+                android:id="@+id/tv_volunme"
+                style="@style/setTV"
+                android:layout_marginLeft="33dp"
+                android:text="9"
+                android:textColor="@color/red"/>
+
+            <TextView
+                style="@style/setTV"
+                android:text="/15"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/setll">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="音量快关"/>
+
+            <Switch
+                android:id="@+id/switch_volunm"
+                android:layout_width="166dp"
+                android:layout_height="99dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="499dp"
+                android:switchTextAppearance="@style/onoffswitch"
+                />
+        </LinearLayout>
+
+        <LinearLayout style="@style/setll">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="设置系统时间"/>
+
+            <TextView
+                android:id="@+id/tvSystemTime"
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="2017年11月13日16时05分"
+                android:textColor="@color/red"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/setll">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="WIFI开关"/>
+
+            <Switch
+                android:id="@+id/switch_wifi"
+                android:layout_width="166dp"
+                android:layout_height="99dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="499dp"
+                android:switchTextAppearance="@style/onoffswitch"
+                />
+        </LinearLayout>
+
+        <LinearLayout style="@style/setll">
+
+            <TextView
+                style="@style/setTV"
+                android:layout_marginRight="@dimen/settvright"
+                android:text="WIFI扫描"/>
+
+            <Switch
+                android:id="@+id/switch_wifiScan"
+                android:layout_width="166dp"
+                android:layout_height="99dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="499dp"
+                android:switchTextAppearance="@style/onoffswitch"
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/wifi_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </ListView>
+
+
+          <Button
+              android:layout_marginBottom="199dp"
+              android:id="@+id/set_save"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/btn_bg"
+              android:padding="22dp"
+              android:text="保存"
+              android:textColor="@color/white"
+              android:textSize="@dimen/lcdtvContent"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

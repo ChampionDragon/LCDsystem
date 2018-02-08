@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:background="@color/black">
+
+        <VideoView
+            android:id="@+id/lcdvideoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/videoCtrl"
+        style="@style/LcdHeightSplit"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/voladd"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/voladd"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="音量+"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volsub"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/volsub"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="音量-"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lcdVideo"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/video"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="播放模式"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/videos_full"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1"
+            android:weightSum="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/fullscreen"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="全屏"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/videos_half"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/halfscreen"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="窗口"/>
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="22dp">
+        <CheckBox
+            android:buttonTint="@color/blue"
+            android:id="@+id/videocheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

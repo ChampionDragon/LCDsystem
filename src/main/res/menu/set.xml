@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/set_onoff"
+        android:title="开关机设置"/>
+   <!-- <item
+        android:id="@+id/set_offical"
+        android:title="官方设置"/>-->
+    <item
+        android:id="@+id/set_normal"
+        android:title="普通设置"/>
+    <item
+        android:id="@+id/set_ftp"
+        android:title="开启ftp "/>
+
+</menu>

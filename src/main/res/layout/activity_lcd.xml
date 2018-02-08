@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_lcd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="22dp">
+        <CheckBox
+            android:buttonTint="@color/blue"
+            android:id="@+id/lcdll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/lcd"
+        style="@style/LcdHeightSplit"
+        android:layout_weight="1"
+        android:background="@color/blueSky">
+
+        <LinearLayout
+            android:id="@+id/lcdback"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/quit"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="退出"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lcdcheck"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/find"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="查看"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lcdSet"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/setting"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="设置"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lcdMode"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/switchmode"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="模式切换"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/videos_screen"
+            style="@style/LcdWidthSplit"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/LcdMainIv"
+                android:background="@drawable/videos_screen"/>
+
+            <TextView
+                style="@style/LcdMainTv"
+                android:text="截图"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        style="@style/LcdHeightSplit"
+        android:layout_weight="9"/>
+
+
+</LinearLayout>

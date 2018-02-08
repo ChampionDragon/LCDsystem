@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/lcdtt"
+        android:layout_width="match_parent">
+
+        <TextView
+            style="@style/lcdtt_tv"
+            android:layout_centerInParent="true"
+            android:text="下载更新"/>
+
+        <ImageView
+            android:id="@+id/back_update"
+            style="@style/lcdtt_iv"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/lcdtitle_im"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/update_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="33dp"
+        android:background="@drawable/btn_bg"
+        android:padding="22dp"
+        android:text="下载广告视频"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lcdtvContent"/>
+
+    <Button
+        android:id="@+id/update_apk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="33dp"
+        android:background="@drawable/btn_bg"
+        android:padding="22dp"
+        android:text="更新APK"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lcdtvContent"/>
+
+</LinearLayout>

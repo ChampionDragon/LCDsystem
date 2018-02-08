@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/onoff_shutdown"
+        android:title="系统关闭"/>
+    <item
+        android:id="@+id/onoff_reboot"
+        android:title="系统重启"/>
+
+</menu>

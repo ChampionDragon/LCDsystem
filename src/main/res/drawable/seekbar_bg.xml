@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@color/blue_deep"/>
+            <!--背景颜色-->
+        </shape>
+    </item>
+
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <solid android:color="@color/blueSky"/>
+                <!--第二进度条-->
+            </shape>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="@color/gold"/>
+                <!--第一进度条-->
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>
+    <!--  项目中遇到的问题时，不管时设置drawable，还是9patch图片，或者时shape，seekbar拖动时总是不现实背景，很郁闷，
+      后来发现是因为进度条和第二进度条在xml文件中设置时没有clip的缘故。-->

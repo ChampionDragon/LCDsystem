@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/check_app"
+        android:title="查看APP和系统的信息"/>
+    <item
+        android:id="@+id/check_sdk"
+        android:title="查看SDK提供的信息"/>
+    <item
+        android:id="@+id/check_update"
+        android:title="查看APK和视频"/>
+    <item
+        android:id="@+id/check_wifi"
+        android:title="查看网络信息"/>
+
+</menu>

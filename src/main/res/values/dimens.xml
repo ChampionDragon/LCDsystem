@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!-- ++++++++++++++++++++++++++++++++++++++  pickerView  ++++++++++++++++++++++++++++++++++++++++++++-->
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">99dp</dimen>
+    <!-- 顶部按钮paddingLeft -->
+    <dimen name="pickerview_topbar_paddingleft">10dp</dimen>
+    <!-- 顶部按钮paddingRight -->
+    <dimen name="pickerview_topbar_paddingright">30dp</dimen>
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pickerview_topbar_btn_textsize">20sp</dimen>
+    <dimen name="pickerview_topbar_title_textsize">21sp</dimen>
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 false 才有效果-->
+    <dimen name="pickerview_textsize">20sp</dimen>
+    <!-- 此值为false pickerview_textsize才会有效果-->
+    <bool name="pickerview_customTextSize">false</bool>
+
+
+    <!--+++++++++++++++++++++++++++++++++++++++LCD显示屏++++++++++++++++++++++++++++++++++++++++-->
+    <dimen name="lcdBtnheight">99dp</dimen>
+    <dimen name="lcdBtnmargin">99dp</dimen>
+    <dimen name="lcdtvTitle">88sp</dimen>
+    <dimen name="lcdDiatt">66sp</dimen>
+    <dimen name="lcdDiapadding">22dp</dimen>
+    <dimen name="lcdtvContent">44sp</dimen>
+    <dimen name="onoffmargainleft">33dp</dimen>
+    <dimen name="setllhight">77dp</dimen>
+    <dimen name="setseekbar">500dp</dimen>
+    <dimen name="settvright">33dp</dimen>
+    <dimen name="setmargintop">33dp</dimen>
+
+
+</resources>

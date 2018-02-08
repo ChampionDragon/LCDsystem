@@ -1,0 +1,130 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    </style>
+    <!--@drawable/loadingpic-->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- popwindow的样式 -->
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_exit</item>
+    </style>
+    <!--￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥  LCD类的样式  ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥-->
+    <style name="lcdStyle" parent="AppTheme">
+        <item name="android:popupMenuStyle">@style/popmenuStyle</item>
+        <item name="android:dropDownListViewStyle">@style/popmenuDivier</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/popmeuText</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/popmeuText</item>
+    </style>
+    <!--popMenu的Style-->
+    <style name="popmenuStyle" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/black</item><!-- popMenu的背景色-->
+    </style>
+    <!--popmenu的字体颜色-->
+    <style name="popmeuText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">33sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">16sp</item>
+    </style>
+    <!--popMenu分割线的颜色-->
+    <style name="popmenuDivier">
+        <item name="android:divider">@color/gray</item>
+        <item name="android:dividerHeight">3sp</item>
+    </style>
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++  LCD屏的样式 +++++++++++++++++++++++++++++++++++++++++++++++-->
+    <style name="LcdHeightSplit">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="LcdWidthSplit">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LcdMainTv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="LcdMainIv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!--LCD屏的title的样式  -->
+    <style name="lcdtt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">168dp</item>
+        <item name="android:background">@color/blueSky</item>
+    </style>
+
+    <style name="lcdtt_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">66sp</item>
+    </style>
+
+    <style name="lcdtt_iv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">66dp</item>
+    </style>
+
+    <!--设置switch字体大小-->
+    <style name="onoffswitch" parent="@style/TextAppearance.AppCompat.Widget.Switch">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="iv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_shallow</item>
+    </style>
+
+    <!-- Dialog样式 -->
+    <style name="dialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 切记一定要设置为透明状态，不然有阴影 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景是否模糊显示 -->
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="setTV">
+        <item name="android:textColor">@color/blueSky</item>
+        <item name="android:textSize">@dimen/lcdtvContent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="setll">
+        <item name="android:layout_marginTop">@dimen/setmargintop</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setllhight</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+
+</resources>

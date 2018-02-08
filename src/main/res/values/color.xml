@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 标准颜色 -->
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="purple">#800073</color>
+    <color name="gold">#ffd700</color>
+    <color name="blueSky">#2894ff</color>
+    <color name="blue">#0000ff</color>
+    <color name="blue_deep">#0000ff</color>
+    <color name="blue_light">#00ffff</color>
+    <color name="red">#ff0000</color>
+    <color name="green_dark">#44b391</color>    <!--墨绿-->
+    <color name="green">#32cd32</color>
+    <color name="green_deep">#006000</color>
+    <color name="yellow">#ffff00</color>
+    <color name="orange">#ffa500</color>
+    <color name="gray">#707070</color>
+    <color name="gray_shallow">#bfbfbf</color>
+    <color name="transparent">#00ffffff</color>
+    <!--  +++++++++++++++++++++++++++  PickView的颜色  ++++++++++++++++++++++++++++++   -->
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+</resources>

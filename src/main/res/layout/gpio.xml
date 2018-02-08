@@ -1,0 +1,46 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="440dp"
+    android:gravity="center" >
+          
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal" >
+    
+    <Button 
+        android:id="@+id/btn_readGpio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:text="@string/read_gpio"/>
+    
+    <Button 
+        android:id="@+id/btn_writeGpio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:text="@string/write_gpio"/>
+    
+   	 <EditText 
+            android:id="@+id/tv_gpioNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34dp"
+            android:numeric="integer"
+            android:hint="@string/gpio_num"/>
+   	 
+   	  <EditText 
+            android:id="@+id/tv_gpioValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34dp"
+            android:numeric="integer"
+            android:hint="@string/write_gpio_value"/>
+    
+    </LinearLayout>
+    
+</LinearLayout>

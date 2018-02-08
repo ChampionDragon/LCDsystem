@@ -1,0 +1,1154 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.smdt.androidapi.MainActivity" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:orientation="vertical" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="1.系统控制"/>
+
+        <Button
+            android:id="@+id/button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="关闭系统(点击按钮即可)" />
+
+        <Button
+            android:id="@+id/button_reboot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:text="重启系统(点击按钮即可)" />
+        
+          <Button
+            android:id="@+id/button_three_poweronoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:text="@string/three_poweronoff" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="2.定时开关机"/>
+
+        <EditText
+            android:id="@+id/edit_hour"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:hint="@string/et_hour" />
+
+        <EditText
+            android:id="@+id/edit_minute"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:hint="@string/et_minute" />
+        
+        <EditText
+            android:id="@+id/edit_enable"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:inputType="number"
+            android:hint="@string/et_enable" />
+        
+        <Button 
+            android:id="@+id/set_power_off_on_time"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="设置定时开关机时间"/>
+            
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="3.网络类型" />
+
+        <Button
+            android:id="@+id/button_get_nettype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="获取当前网络类型" />
+
+        <TextView
+            android:id="@+id/edit_get_net_type"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:hint="点击按钮后,这里会显示当前网络类型"
+            android:textSize="24sp" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >     
+
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="4.截图"/>
+
+        <Button
+            android:id="@+id/button_takepictrue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="76dp"
+            android:text="先把1.mp4视频存储在系统内存中，然后点击截图按钮，接着画面会跳转并播放视频，再点击下方的按钮，截图的图片存储在系统的pictures目录下" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="5.APK安装" />
+        
+    	<Button
+            android:id="@+id/button_silentInstall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:text="先把Update.apk放入系统存储根目录下，再点击按钮" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="6.Gpio" />
+        
+    	<Button
+            android:id="@+id/btn_gpio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="76dp"
+            android:text="Gpio" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="7.设备信息" />
+        
+    	<Button
+            android:id="@+id/btn_devices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="关于设备信息" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="8.串口控制" />
+        
+    	<Button
+            android:id="@+id/btn_uart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="获取串口路径(先点击按钮，然后下拉旁边的框)" />
+    	
+    	<Spinner
+    	    android:id="@+id/spin_dev"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginLeft="24dp"
+    	    android:entries="@array/uart_path" />
+    	
+    	<TextView
+    	    android:id="@+id/textView"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:textSize="24sp" />
+    	
+    	<!-- <Button 
+    	    android:id="@+id/btn_serialreceive"
+    	    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="接收"/>
+    	
+    	<Button 
+    	    android:id="@+id/btn_serialsend"
+    	    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="发送"/> -->
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="9.固件升级" />
+
+    </LinearLayout>
+    	
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    	
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="10.时间控制"/>
+
+         <Button
+             android:id="@+id/btn_update"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="40dp"
+             android:text="升级update.zip(先把update.zip包存储在系统内部的根目录下，再点击按钮)"
+             android:layout_weight="1"/>
+
+         <EditText
+            android:id="@+id/et_year"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:numeric="integer"
+            android:hint="@string/et_year" />
+
+        <EditText
+            android:id="@+id/et_month"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:numeric="integer"
+            android:hint="@string/et_month" />
+        
+        <EditText
+            android:id="@+id/et_day"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:numeric="integer"
+            android:hint="@string/et_day"/>
+
+        <EditText
+            android:id="@+id/et_hour"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:numeric="integer"
+            android:hint="小时" />
+        
+        <EditText
+            android:id="@+id/et_minute"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:numeric="integer"
+            android:hint="分钟" />
+     
+        <Button
+            android:id="@+id/button_settime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="更改设置时间" />
+        
+        <Button
+            android:id="@+id/button_settimebynet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="同步网络时间" />       
+        
+        <Button
+            android:id="@+id/button_settimebynetoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="取消同步网络时间" />
+        
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="11.wifi控制"/>
+         
+       	<Button
+	        android:id="@+id/btn_wifi"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="40dp"
+	        android:text="wifi控制" />
+       
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="12.状态栏开关"/>
+         
+       	<Button
+	        android:id="@+id/btn_showstatus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:text="显示状态栏" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_hidestatus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="隐藏状态栏" />/>
+       
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="13.旋转屏幕"/>
+         
+       	<Button
+	        android:id="@+id/btn_one"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="34dp"
+	        android:text="0" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_two"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="90" />
+       	
+       	<Button
+	        android:id="@+id/btn_three"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="180" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_four"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="270" />/>
+       
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="14.背光控制"/>
+         
+       	<Button
+	        android:id="@+id/btn_openback"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="34dp"
+	        android:text="开" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_closeback"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="关" />
+       	
+       	<Button
+	        android:id="@+id/btn_getback"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="34dp"
+	        android:text="获取开关屏状态值 " />   
+               
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="15.系统日志"/>
+         
+       	<Button
+	        android:id="@+id/btn_openlog"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="34dp"
+	        android:text="开" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_closelog"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="关" />/>
+       
+     </LinearLayout>
+         
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="16.声音控制"/>                	
+       	
+       	<Button 
+       	    android:id="@+id/btn_volumeadd"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="音量+" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_volumedec"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="音量-" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_mute"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="静音" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_normal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="正常" />
+       
+     </LinearLayout>
+     
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >
+         
+         <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="17.亮度"/>
+         
+         <Button 
+             android:id="@+id/btn_bright"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="设置亮度" />
+         
+         <EditText 
+             android:id="@+id/edit_setBright"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:numeric="integer"
+             android:hint="@string/edit_setBright"/>
+         
+         <Button 
+             android:id="@+id/btn_getBright"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取亮度值"/>
+         
+         <TextView 
+             android:id="@+id/tv_bright"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="显示亮度值" />
+         
+     </LinearLayout>
+     
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >
+         
+         <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="18.设置音量"/>
+         
+         <Button 
+             android:id="@+id/btn_setVolume"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="设置声音值" />
+         
+         <EditText 
+             android:id="@+id/edit_values"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:numeric="integer"
+             android:hint="输入音量值(1~15)"/>
+         
+         <Button 
+             android:id="@+id/btn_getVolume"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取声音值" />
+         
+     	 <TextView 
+       	     android:id="@+id/txt_volume_show"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:layout_marginLeft="24dp"
+       	     android:textSize="24sp"
+       	     android:hint="获取音量值"/>
+     	 
+     	 </LinearLayout>
+     	 
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >
+         
+         <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="19.获取网络IP和Mac地址"/>
+         
+         <Button 
+             android:id="@+id/btn_getmac"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取网络Mac地址"/>
+         
+         <TextView 
+             android:id="@+id/tv_showMac"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:layout_marginLeft="34dp"
+       	     android:text="显示Mac地址"/>
+         
+         <Button 
+             android:id="@+id/btn_setIP"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="设置IP地址"/>
+         
+          <EditText 
+             android:id="@+id/tv_setIP"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:layout_marginLeft="34dp"
+       	     android:inputType="number"
+       	     android:digits="0123456789."
+       	      android:hint="显示要设置的IP地址"/>       	       
+      
+     </LinearLayout>
+     
+       <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+          android:layout_marginLeft="50dp"
+         android:orientation="horizontal" >
+         <Button 
+             android:id="@+id/btn_getIP"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取网络IP地址"/>
+         
+         <TextView 
+             android:id="@+id/tv_showIP"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:layout_marginLeft="34dp"
+       	     android:text="显示IP地址"/>
+         </LinearLayout>
+     
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >
+         
+         <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="20.路径"/>
+         
+         <Button 
+             android:id="@+id/btn_sd"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取SD卡路径" />
+         
+         <TextView 
+             android:id="@+id/tv_sd"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:numeric="integer"
+             android:hint="显示SD卡路径"/>
+         
+         <Button 
+             android:id="@+id/btn_USB"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取USB路径"/>
+         
+         <EditText 
+             android:id="@+id/edit_usb_num"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:numeric="integer"
+             android:hint="输入USB序号"/>
+         
+         <TextView 
+             android:id="@+id/tv_USB"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:hint="显示USB路径" />
+         
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="21.开关开门狗"/>
+         
+       	<Button
+	        android:id="@+id/btn_watchdog"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:text="开启开门狗" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_closedog"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="关闭开门狗" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_feeddog"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="喂狗" />
+       
+     </LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="22.USB"/>
+         
+       	<Button
+	        android:id="@+id/btn_openUSB"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:text="开usb电源" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_closeUSB"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="关usb电源" />
+       	
+      
+       	 <EditText 
+             android:id="@+id/tv_usbNum"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:numeric="integer"
+             android:hint="@string/usb_num"/>
+       
+     </LinearLayout>
+     
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="23.开关以太网"/>
+         
+       	<Button
+	        android:id="@+id/btn_openEthPower"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:text="@string/open_eth_power" />
+       	
+       	<Button 
+       	    android:id="@+id/btn_closeEthPower"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="@string/close_eth_power" />
+       	             	
+       	<Button 
+       	    android:id="@+id/btn_getEth"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="24dp"
+	        android:text="@string/get_eth_status" />
+       	
+       	<TextView 
+             android:id="@+id/tv_eth"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:hint="@string/eth_status" />
+       
+     </LinearLayout>
+     
+       <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="24.屏幕参数"/>
+            
+         <Button 
+             android:id="@+id/btn_screenWidth"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取屏幕宽度"/>  
+             
+          <TextView 
+             android:id="@+id/tv_screenWidth"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="屏幕宽度"/>
+             
+           <Button 
+             android:id="@+id/btn_screenHeight"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取屏幕高度"/>  
+             
+            <TextView 
+             android:id="@+id/tv_screenHeight"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="屏幕高度"/>
+          
+     </LinearLayout>
+           <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="24.eeprom"/>
+          
+         <EditText 
+             android:id="@+id/et_deviceId"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:numeric="integer"
+             android:hint="deviceId(从0开始)"/>
+         
+          <EditText 
+             android:id="@+id/et_areaId"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:numeric="integer"
+             android:hint="区域ID(从1开始)"/>
+          
+           <EditText 
+             android:id="@+id/et_start_addr"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:numeric="integer"
+             android:hint="超始地址"/>
+           
+            <EditText 
+             android:id="@+id/et_size"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:numeric="integer"
+             android:hint="数据长度"/>
+            
+         
+     </LinearLayout>
+     
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+          android:layout_marginLeft="50dp"
+         android:orientation="horizontal" >
+        <Button 
+             android:id="@+id/btn_write_eeprom"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:text="写eeprom"/>   
+             
+           <EditText 
+             android:id="@+id/et_eeprom_data"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:hint="eeprom的数据"/>
+            
+           <Button 
+             android:id="@+id/btn_read_eeprom"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:text="读eeprom"/>  
+             
+          <TextView 
+             android:id="@+id/tv_read_eeprom"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="eeprom数据"/>
+       </LinearLayout>
+     
+           
+       <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="25.API"/>
+            
+         <Button 
+             android:id="@+id/btn_get_api_version"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取API版本"/>  
+             
+          <TextView 
+             android:id="@+id/tv_api_version"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="api版本"/>             
+           
+     </LinearLayout>     
+           
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="25.3G"/>
+            
+         <Button 
+             android:id="@+id/btn_3G_open"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="3G开"/>  
+             
+         <Button 
+         android:id="@+id/btn_3G_close"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="34dp"
+         android:text="3G关"/>  
+             
+        <Button 
+          android:id="@+id/btn_3G_reset"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="34dp"
+          android:text="3G复位"/>  
+           
+     </LinearLayout>
+     
+      <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="26.LED"/>
+            
+         <Button 
+             android:id="@+id/btn_led_open"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="led开"/>  
+             
+         <Button 
+         android:id="@+id/btn_led_close"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="34dp"
+         android:text="led关"/>              
+      
+           
+     </LinearLayout>
+     
+      
+       <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="27.MIC"/>
+            
+         <Button 
+             android:id="@+id/btn_headsetmic_open"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="耳机mic开"/>  
+             
+         <Button 
+         android:id="@+id/btn_headsetmic_close"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="34dp"
+         android:text="耳机mic关"/>              
+      
+           
+     </LinearLayout>
+     
+       
+       <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="28.卸载u盘/sd卡"/>
+            
+         <Button 
+             android:id="@+id/btn_unmount"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="卸载u盘/sd卡"/> 
+             <EditText 
+             android:id="@+id/et_unmount_path"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:hint="填写要卸载的SD卡或USB的路径"/> 
+           
+     </LinearLayout>
+     
+        <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="29.双屏异显"/>
+
+            <Button
+                android:id="@+id/btn_get_hdmiin_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="34dp"
+                android:text="获取hdmi in状态"
+                android:layout_weight="1"/>
+
+            <Button
+             android:id="@+id/btn_get_screen_number"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="34dp"
+             android:text="获取screen_number"/>  
+             
+          <TextView 
+             android:id="@+id/tv_screen_number1"
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="screen_number的值"/>             
+           
+     </LinearLayout>
+     
+         <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal" >     
+        <TextView 
+       	     android:layout_width="wrap_content"
+       	     android:layout_height="wrap_content"
+       	     android:textSize="16sp"
+       	     android:text="30.hdmi in"/>
+
+         </LinearLayout>
+     
+	</LinearLayout>
+
+</ScrollView>

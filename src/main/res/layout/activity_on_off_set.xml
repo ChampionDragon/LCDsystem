@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_on_off_set"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="33dp"
+    >
+
+    <LinearLayout
+        style="@style/LcdHeightSplit"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/LcdMainTv"
+            android:text="定时开关机使用说明"
+            android:textColor="@color/red"
+            android:textSize="@dimen/lcdtvTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onoffset"
+            android:textSize="@dimen/lcdtvContent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="开机时间"
+                android:textColor="@color/green_dark"
+                android:textSize="@dimen/lcdtvContent"
+                />
+
+            <TextView
+                android:id="@+id/tv_onset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="14:19"
+                android:textColor="@color/black"
+                android:textSize="@dimen/lcdtvContent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:text="关机时间"
+                android:textColor="@color/green_dark"
+                android:textSize="@dimen/lcdtvContent"
+                />
+
+            <TextView
+                android:id="@+id/tv_offset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="14:29"
+                android:textColor="@color/black"
+                android:textSize="@dimen/lcdtvContent"/>
+
+            <Switch
+                android:id="@+id/switch_onoffset"
+                android:layout_width="166dp"
+                android:layout_height="99dp"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:switchTextAppearance="@style/onoffswitch"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LcdHeightSplit"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/LcdMainTv"
+            android:text="设置开关机时间间隔说明"
+            android:textColor="@color/red"
+            android:textSize="@dimen/lcdtvTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onoffInterval"
+            android:textSize="@dimen/lcdtvContent"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="开机间隔"
+                android:textColor="@color/green_dark"
+                android:textSize="@dimen/lcdtvContent"
+                />
+
+            <TextView
+                android:id="@+id/tv_oninterval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="1:45"
+                android:textColor="@color/black"
+                android:textSize="@dimen/lcdtvContent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="关机间隔"
+                android:textColor="@color/green_dark"
+                android:textSize="@dimen/lcdtvContent"
+                />
+
+            <TextView
+                android:id="@+id/tv_offinterval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:text="0:30"
+                android:textColor="@color/black"
+                android:textSize="@dimen/lcdtvContent"/>
+
+            <Switch
+                android:id="@+id/switch_onoffinterval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/onoffmargainleft"
+                android:switchTextAppearance="@style/onoffswitch"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/LcdHeightSplit"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/onoff_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/lcdBtnmargin"
+            android:layout_marginRight="@dimen/lcdBtnmargin"
+            android:background="@drawable/btn_bg"
+            android:padding="22dp"
+            android:text="保存设置"
+            android:textColor="@color/white"
+            android:textSize="@dimen/lcdtvContent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
