@@ -47,3 +47,19 @@
 ![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%8714.png)
 
 
+
+
+
+
+
+
+
+
+演示当lcd播放广告（视频/图片）如果停车场设备接收要付费时会弹出此框
+
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/a.png)
+
+
+
+
+
