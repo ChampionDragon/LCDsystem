@@ -1,0 +1,84 @@
+[33mcommit 6b3e081add82f86a3da29466fdc2adf7a603e359[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ChampionDragon <905889761@qq.com>
+Date:   Tue Apr 3 14:47:52 2018 +0800
+
+    增加app的运行内存
+
+[33mcommit 55bd5e9433fe4fb30e6173b858458a17900e8afc[m[33m ([m[1;32mtest[m[33m, [m[1;32mnewtest[m[33m)[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Fri Feb 9 09:48:47 2018 +0800
+
+    Update README.md
+
+[33mcommit 6f1152176ccde23a4c872afe4883cb9787066776[m
+Author: ChampionDragon <905464>
+Date:   Fri Feb 9 09:45:52 2018 +0800
+
+    添加二维码图片
+
+[33mcommit d5bc8e97757f76599db6c474fb724432f86d73cb[m
+Merge: 24d2cc4 1717992
+Author: ChampionDragon <905889761@qq.com>
+Date:   Thu Feb 8 15:54:57 2018 +0800
+
+    添加使用文档
+
+[33mcommit 24d2cc4632b712f01a361ea5e7bdd1f35b08cf74[m
+Author: ChampionDragon <905889761@qq.com>
+Date:   Thu Feb 8 14:42:52 2018 +0800
+
+    新增使用文档
+
+[33mcommit 17179925bd92087b4032c04cfbf33337505dd517[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:32:46 2018 +0800
+
+    Update README.md
+
+[33mcommit 5a9e1ff31f1c3ebd171209e370785f51bcfb66be[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:30:29 2018 +0800
+
+    Update README.md
+
+[33mcommit 5f800dc55c3dd260925eae85d28af3d913808f6d[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:16:03 2018 +0800
+
+    Update README.md
+
+[33mcommit 03cf41f4c9e7605ca32a32d5aa31006a1dc7e761[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:14:08 2018 +0800
+
+    Update README.md
+
+[33mcommit b012eb5a22f790a6559f4aafd31152b0825b3b3e[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:13:18 2018 +0800
+
+    Update README.md
+
+[33mcommit be0939f1c1bbba60d42d1536a8a8f13f114108f5[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 14:00:49 2018 +0800
+
+    Update README.md
+
+[33mcommit d9078054062284c1b804e1034c1c7f0ae8b46343[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 13:53:59 2018 +0800
+
+    Update README.md
+
+[33mcommit 15e0f499328de3a602f87f7d710ee6cc876eaa8f[m
+Author: 龙成斌(CN)    ChampionDragon(EN) <905889761@qq.com>
+Date:   Thu Feb 8 13:52:17 2018 +0800
+
+    Create README.md
+
+[33mcommit e984425af4ec3d539cd77c8f6de4ef9b4321302b[m
+Author: ChampionDragon <905889761@qq.com>
+Date:   Thu Feb 8 11:55:04 2018 +0800
+
+    lcd app first build
