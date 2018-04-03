@@ -45,11 +45,11 @@ import java.util.List;
 
 public class SetActivity extends BaseActivity implements View.OnClickListener {
     //brightness,bright,tvBright,
-    private SeekBar  volumne;
-    private TextView  tvVol, systemTime;
+    private SeekBar volumne;
+    private TextView tvVol, systemTime;
     private LinearLayout llVol;
     private SmdtManager smdt;
-    private int  vol;
+    private int vol;
     private Switch Swivol, SwiWifi, SwiScan;
     String tag = "SetActivity";
     private String rootDir = Environment.getExternalStorageDirectory().toString() + File.separator;

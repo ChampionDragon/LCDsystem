@@ -28,6 +28,7 @@ import com.smdt.androidapi.utils.DialogNotileUtil;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.NetConnectUtil;
 import com.smdt.androidapi.utils.SmallUtil;
+import com.smdt.androidapi.utils.ToastUtil;
 import com.smdt.androidapi.view.DialogLoading;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -56,6 +57,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
 
     private String videoUrl = "";
     private List<String> videoList;//通过搜索本地资源
+    private List<String> vl;//变成播放完了再遍历一遍
 
     private String netUrl = Constant.viedoUrl;
     //private SmdtManager smdt;//smdt是控制板的jdk对象有厂家提供
@@ -86,7 +88,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
         Logs.i("数量 " + Arrays.toString(videoList.toArray()));
         if (videoList.size() > 0) {
             /*默认遍历出来的第一视频为播放地址*/
-            if (videoList.size()<= videoNum) {
+            if (videoList.size() <= videoNum) {
                 videoNum = 0;
             }
             videoUrl = videoList.get(videoNum);
@@ -140,9 +142,9 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.videos_full).setOnClickListener(this);
         view.findViewById(R.id.videos_half).setOnClickListener(this);
         videoView = (VideoView) view.findViewById(R.id.lcdvideoView);
-        videoCheck= (CheckBox) view.findViewById(R.id.videocheck);
+        videoCheck = (CheckBox) view.findViewById(R.id.videocheck);
         videoCheck.setOnClickListener(this);
-        videoCtrl= (LinearLayout) view.findViewById(R.id.videoCtrl);
+        videoCtrl = (LinearLayout) view.findViewById(R.id.videoCtrl);
     }
 
     @Override
@@ -164,9 +166,9 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
                 showMenu(Videomenu);
                 break;
             case R.id.videocheck:
-                if(videoCheck.isChecked()){
+                if (videoCheck.isChecked()) {
                     videoCtrl.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     videoCtrl.setVisibility(View.GONE);
                 }
                 break;
@@ -254,23 +256,40 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
     MediaPlayer.OnCompletionListener completion = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            if (videoList.size()-1<= videoNum) {
+            if (videoList.size() - 1 <= videoNum) {
                 videoNum = 0;
             } else {
                 ++videoNum;
             }
 //            Logs.e("视频轮播 " + videoList.size() + "  " + videoNum);
             videoUrl = videoList.get(videoNum);
-            videoURL(videoUrl);
+
+            /*每次遍历一遍视频文件*/
+            vl = SmallUtil.getViedoPath(Constant.PathLS);
+
+            /*每次遍历判断是否视频文件被删除了*/
+            Logs.e("每次遍历的大小：" + vl.size() + "   之前遍历的大小" + videoList.size());
+            if (vl.size() > videoList.size()) {
+                initUrl();
+            }
+            if (SmallUtil.fileIsExists(videoUrl)) {
+                videoURL(videoUrl);
+            } else {
+                initUrl();
+            }
         }
+
+
     };
+
 
     /*播放错误的回调函数*/
     MediaPlayer.OnErrorListener errorListener = new MediaPlayer.OnErrorListener() {
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
-            Logs.v("lcdactivity 313   " + what + "   " + extra);
-            ShowErrorDialog("无法播放");
+            Logs.e(tag + "289   " + what + "   " + extra);
+            ToastUtil.showShort("无法播放");
+            initUrl();
 //            设置成true就不会有播放视频"错误的弹框"
             return true;
         }
