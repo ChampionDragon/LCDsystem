@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smdt.androidapi"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="0"
+    android:versionName="0.0">
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -16,7 +16,6 @@
 
     <!-- 防止UDP不能发送广播而要创建WifiManager.MulticastLock所需对象的权限 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-
     <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- 手电筒 -->
     <uses-permission android:name="android.permission.READ_FRAME_BUFFER" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -55,8 +54,10 @@
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <!-- heapSize是设备分配给app的最大堆内存maxHeapSize是当配置了android:largeHeap="true" 才有的最大堆内存，
-     一般是heapSize的2-3倍.这样做的目的是增加本app的运行内存，防止OOM程序死掉-->
+    <!--
+     heapSize是设备分配给app的最大堆内存maxHeapSize是当配置了android:largeHeap="true" 才有的最大堆内存，
+     一般是heapSize的2-3倍.这样做的目的是增加本app的运行内存，防止OOM程序死掉
+    -->
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -99,6 +100,8 @@
         <activity android:name=".lcd.SetActivity" />
         <activity android:name=".lcd.UpdateActivity" />
         <activity android:name=".lcd.WifiInfo" />
+        <activity android:name=".lcd.ApkActivity" />
+        <activity android:name=".lcd.ApkInfoActivity"></activity>
     </application>
 
 </manifest>

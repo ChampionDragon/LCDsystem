@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
             android:layout_marginTop="11dp"
-            android:text="asdada"
+            android:text="Title"
             android:textColor="@color/blue_deep"
             android:textSize="@dimen/lcdDiatt"
             android:textStyle="bold" />
@@ -31,6 +31,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:text="txtxtxxtxtxtaaaaaaaaaaaaaaa"
             android:layout_marginTop="44dp"
             android:layout_marginBottom="66dp"
             android:id="@+id/custom_msg"

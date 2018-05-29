@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/lcdtt"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/apkinfo_tv"
+            style="@style/lcdtt_tv"
+            android:layout_centerInParent="true"
+            android:text="APK信息" />
+
+        <ImageView
+            android:id="@+id/back_apkinfo"
+            style="@style/lcdtt_iv"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/lcdtitle_im" />
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/apkinfo_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:divider="@color/blueSky"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/log_lv_item_bg" />
+
+    <LinearLayout
+        style="@style/LcdHeightSplit"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/apkinfo_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/lcdBtnmargin"
+            android:layout_marginRight="@dimen/lcdBtnmargin"
+            android:background="@drawable/btn_bg"
+            android:padding="22dp"
+            android:text="更新APK "
+            android:textColor="@color/white"
+            android:textSize="@dimen/lcdtvContent" />
+
+    </LinearLayout>
+</LinearLayout>

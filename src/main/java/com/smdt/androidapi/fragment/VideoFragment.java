@@ -24,7 +24,6 @@ import com.smdt.androidapi.base.AsyncTaskExecutor;
 import com.smdt.androidapi.base.BaseApplication;
 import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.DialogCustomUtil;
-import com.smdt.androidapi.utils.DialogNotileUtil;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.NetConnectUtil;
 import com.smdt.androidapi.utils.SmallUtil;
@@ -336,9 +335,9 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onError(Call call, Exception e, int i) {
                     if (NetConnectUtil.NetConnect(getActivity())) {
-                        DialogNotileUtil.show(getActivity(), "服务器异常,文件下载失败");
+                        ToastUtil.showLong("服务器异常,文件下载失败");
                     } else {
-                        DialogNotileUtil.show(getActivity(), "未连接到网络,文件下载失败");
+                        ToastUtil.showLong("未连接到网络,文件下载失败");
                     }
                     Logs.e(tag + "331播放错误原因 " + e + "  " + i);
                     dialoading.close();

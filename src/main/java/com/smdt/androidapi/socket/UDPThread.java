@@ -120,11 +120,11 @@ public class UDPThread {
             case "getip":
                 JSONObject jb = new JSONObject();
                 try {
-                    String ip=BaseApplication.getInstance().getIp();
-                    if(ip.equals("0.0.0.0")){
-                        ip= GetIpAddress.getWiredIP();
+                    String ip = BaseApplication.getInstance().getIp();
+                    if (ip.equals("0.0.0.0")) {
+                        ip = GetIpAddress.getWiredIP();
                     }
-                    jb.put("ip",ip);
+                    jb.put("ip", ip);
                     jb.put("port", Constant.port);
                     jb.put("id", SystemUtil.ID());
                 } catch (JSONException e) {

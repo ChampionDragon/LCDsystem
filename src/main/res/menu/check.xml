@@ -8,7 +8,7 @@
         android:title="查看SDK提供的信息"/>
     <item
         android:id="@+id/check_update"
-        android:title="查看APK和视频"/>
+        android:title="手动更新APK"/>
     <item
         android:id="@+id/check_wifi"
         android:title="查看网络信息"/>

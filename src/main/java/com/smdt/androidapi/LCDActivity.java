@@ -4,6 +4,9 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.smdt.SmdtManager;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,21 +21,22 @@ import android.widget.PopupMenu;
 import com.smdt.androidapi.base.BaseApplication;
 import com.smdt.androidapi.fragment.ImageFragment;
 import com.smdt.androidapi.fragment.VideoFragment;
+import com.smdt.androidapi.lcd.ApkActivity;
 import com.smdt.androidapi.lcd.AppInfoActivity;
 import com.smdt.androidapi.lcd.OnOffSetActivity;
 import com.smdt.androidapi.lcd.SDKInfoActivity;
 import com.smdt.androidapi.lcd.SetActivity;
-import com.smdt.androidapi.lcd.UpdateActivity;
 import com.smdt.androidapi.lcd.WifiInfo;
 import com.smdt.androidapi.listener.DiadisListener;
 import com.smdt.androidapi.socket.TCPThread;
 import com.smdt.androidapi.socket.UDPThread;
 import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.DialogCustomUtil;
-import com.smdt.androidapi.utils.DialogNotileUtil;
+import com.smdt.androidapi.utils.DialogText;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.NetConnectUtil;
 import com.smdt.androidapi.utils.SmallUtil;
+import com.smdt.androidapi.utils.ToastUtil;
 import com.smdt.androidapi.view.DialogCode;
 
 import org.json.JSONException;
@@ -49,7 +53,8 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     //Environment.DIRECTORY_PICTURES  系统的照片根目录
     private String filePath = Environment.
             getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath() + File.separator;
-    private DialogCode codeDia;
+    private DialogCode codeDia;//二维码弹框
+    private DialogText textDia;//文字弹框
     public static final String VideoFragment = "videofragment";
     public static final String ImageFragment = "imagefragment";
     private Fragment currentFragment;
@@ -63,6 +68,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_lcd);
         initView();
         smdt = SmdtManager.create(getApplicationContext());
@@ -71,6 +77,22 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         Logs.d(tag + "   onCreate ");
         initUtcp();
         test();
+    }
+
+    /*窗口界面的设置*/
+    private void initWindow() {
+        //隐藏虚拟按键，并且全屏(无法更改）
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
     }
 
     //    初始化tcp和udp的连接
@@ -87,6 +109,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     }
 
     private void test() {
+//        textDia = new DialogText("测试\naaaaaa\nbbbbbbb\ndasdasdsadafgkjgkjhkllsdasdasdasd", this);
         /*六秒钟自动关闭二维码*/
 //        handler.sendEmptyMessageDelayed(1, 6000);
 //        Logs.d(TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
@@ -96,7 +119,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //            public void run() {
 //                handler.obtainMessage().sendToTarget();
 //            }
-//        }, 3, 3, TimeUnit.SECONDS);
+//        }, 6, 6, TimeUnit.SECONDS);
     }
 
     Handler handler = new Handler() {
@@ -110,6 +133,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                         codeDia = null;
                         findViewById(R.id.fragment).setVisibility(View.VISIBLE);
                         currentFragment.onStart();
+                        initWindow();
                     }
                     break;
                 case Constant.diaCreate:
@@ -123,7 +147,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                             Logs.e(tag + "109  " + e);
                         }
                     } else {
-                        DialogNotileUtil.show(LCDActivity.this, "发送格式不对");
+                        ToastUtil.showLong("发送格式不对");
                     }
                     break;
 
@@ -141,12 +165,69 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                         }
                         handler.sendEmptyMessageDelayed(Constant.diaDis, time * 1000);
                     } else {
-                        DialogNotileUtil.show(LCDActivity.this, "发送格式不对");
+                        ToastUtil.showLong("发送格式不对");
                     }
                     break;
+
+                case Constant.UpdateApk:
+                    String params3 = (String) msg.obj;
+                    UpdateApk(params3);
+                    break;
+
+                case Constant.textCreate:
+                    String params4 = (String) msg.obj;
+                    createTextDialog(params4);
+                    break;
+
+                case Constant.textDis:
+                    closeTextDialog();
+                    break;
+
+                case Constant.textDisByTime:
+                    String params5 = (String) msg.obj;
+
+                    if (params5 != null) {
+                        int time = 6;
+                        try {
+                            JSONObject jb = new JSONObject(params5);
+                            createTextDialog(jb.getString(Constant.diastr));
+                            time = Integer.valueOf(jb.getString(Constant.diaDisTime));
+                        } catch (JSONException e) {
+                            Logs.e(tag + "200  " + e);
+                        }
+                        handler.sendEmptyMessageDelayed(Constant.textDis, time * 1000);
+                    } else {
+                        ToastUtil.showLong("发送格式不对");
+                    }
+                    break;
+
+                default:
+
+//                    if (new Random().nextInt(2) == 1) {
+//                        createTextDialog("测试\naaaaaa\nbbbbbbb\ndasdasdsadafgkjgkjhkllsdasdasdasd"
+//                                + TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
+//                    } else {
+//                        closeTextDialog();
+//                    }
+
+                    break;
+
             }
         }
     };
+
+    /*通过上位机更新APK*/
+    private void UpdateApk(String params3) {
+        File file = new File(Constant.fileLS.getAbsolutePath(), params3);
+        if (file.exists()) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+            startActivity(intent);
+        } else {
+            ToastUtil.showLong("\"" + params3 + "\"" + "文件不存在");
+        }
+    }
 
     /*创建二维码*/
     private void createCodeDialog(String code, String str) {
@@ -161,12 +242,30 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 public void dismiss() {
                     findViewById(R.id.fragment).setVisibility(View.VISIBLE);
                     currentFragment.onStart();
+                    initWindow();
                 }
             });
             findViewById(R.id.fragment).setVisibility(View.INVISIBLE);
             currentFragment.onPause();
         }
+    }
 
+    /*创建文字弹框*/
+    private void createTextDialog(String s) {
+        if (textDia != null) {
+            textDia.updateTv(s);
+        } else {
+            textDia = new DialogText(s, this);
+        }
+    }
+
+    /*删除文字弹框*/
+    private void closeTextDialog() {
+        if (textDia != null) {
+            textDia.closeDia();
+            textDia = null;
+            initWindow();
+        }
     }
 
 
@@ -174,13 +273,17 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+
+        //窗口界面的设置
+        initWindow();
+
            /*延时二十秒检查网络状态*/
         new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if (!NetConnectUtil.NetConnect(LCDActivity.this)) {
-                    DialogNotileUtil.show(LCDActivity.this, "未连接到网络");
+                    ToastUtil.showLong("未连接到网络");
                 }
             }
         }.sendEmptyMessageDelayed(1, 19999);
@@ -304,6 +407,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 return false;
             }
         });
+        popupMenu.setOnDismissListener(dismiss);
         popupMenu.show();
     }
 
@@ -332,6 +436,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 return false;
             }
         });
+        popupMenu.setOnDismissListener(dismiss);
         popupMenu.show();
     }
 
@@ -350,7 +455,8 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                         SmallUtil.getActivity(LCDActivity.this, SDKInfoActivity.class);
                         break;
                     case R.id.check_update:
-                        SmallUtil.getActivity(LCDActivity.this, UpdateActivity.class);
+//                        SmallUtil.getActivity(LCDActivity.this, UpdateActivity.class);
+                        SmallUtil.getActivity(LCDActivity.this, ApkActivity.class);
                         break;
                     case R.id.check_wifi:
                         SmallUtil.getActivity(LCDActivity.this, WifiInfo.class);
@@ -359,6 +465,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 return false;
             }
         });
+        popupMenu.setOnDismissListener(dismiss);
         popupMenu.show();
     }
 
@@ -390,10 +497,21 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                                 });
                         dialog.show();
                         break;
+                    case R.id.onoff_out:
+                        Dialog two = DialogCustomUtil.create("警告", "您确定要退出APP吗？",
+                                LCDActivity.this, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        BaseApplication.getInstance().onTerminate();
+                                    }
+                                });
+                        two.show();
+                        break;
                 }
                 return false;
             }
         });
+        popmenu.setOnDismissListener(dismiss);
         popmenu.show();
     }
 
@@ -403,7 +521,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         SimpleDateFormat sdformats = new SimpleDateFormat(Constant.formatPhoto);
         String fileNames = sdformats.format(new Date(System.currentTimeMillis())) + ".png";
         smdt.smdtTakeScreenshot(filePath, fileNames, getApplicationContext());
-        DialogNotileUtil.show(this, "文件保留成功,请在根目录\"Picture\"文件夹下查看。");
+        ToastUtil.showLong("文件保留成功,请在根目录\"Picture\"文件夹下查看。");
     }
 
     @Override
@@ -440,6 +558,13 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     public void onBackPressed() {
         BaseApplication.getInstance().exitApp();
     }
+
+    PopupMenu.OnDismissListener dismiss = new PopupMenu.OnDismissListener() {
+        @Override
+        public void onDismiss(PopupMenu menu) {
+            initWindow();
+        }
+    };
 
 
 }

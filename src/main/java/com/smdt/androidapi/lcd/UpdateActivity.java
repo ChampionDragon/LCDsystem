@@ -10,11 +10,11 @@ import com.smdt.androidapi.R;
 import com.smdt.androidapi.base.BaseActivity;
 import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.DialogCustomUtil;
-import com.smdt.androidapi.utils.DialogNotileUtil;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.NetConnectUtil;
 import com.smdt.androidapi.utils.SmallUtil;
 import com.smdt.androidapi.utils.SystemUtil;
+import com.smdt.androidapi.utils.ToastUtil;
 import com.smdt.androidapi.view.DialogLoading;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -82,9 +82,9 @@ public class UpdateActivity extends BaseActivity implements View.OnClickListener
                 @Override
                 public void onError(Call call, Exception e, int i) {
                     if (NetConnectUtil.NetConnect(UpdateActivity.this)) {
-                        DialogNotileUtil.show(UpdateActivity.this, "服务器异常,文件下载失败");
+                        ToastUtil.showLong("服务器异常,文件下载失败");
                     } else {
-                        DialogNotileUtil.show(UpdateActivity.this, "未连接到网络,文件下载失败");
+                        ToastUtil.showLong("未连接到网络,文件下载失败");
                     }
                     Logs.e(tag + "91 " + e + "  " + i);
                     dialoading.close();
@@ -134,13 +134,13 @@ public class UpdateActivity extends BaseActivity implements View.OnClickListener
         @Override
         public void run() {
             OkHttpUtils.get().url(Constant.apkUpdate).build().execute(new FileCallBack(
-                    Constant.fileLS.getAbsolutePath(), Constant.apkName) {
+                    Constant.fileLS.getAbsolutePath(), Constant.apkNames) {
                 @Override
                 public void onError(Call call, Exception e, int i) {
                     if (NetConnectUtil.NetConnect(UpdateActivity.this)) {
-                        DialogNotileUtil.show(UpdateActivity.this, "服务器异常,文件下载失败");
+                        ToastUtil.showLong("服务器异常,文件下载失败");
                     } else {
-                        DialogNotileUtil.show(UpdateActivity.this, "未连接到网络,文件下载失败");
+                        ToastUtil.showLong("未连接到网络,文件下载失败");
                     }
                     Logs.e(tag + "331 " + e + "  " + i);
                     dialoading.close();
@@ -166,7 +166,7 @@ public class UpdateActivity extends BaseActivity implements View.OnClickListener
 
     /*返回安装的意图*/
     private Intent getInstall() {
-        File file = new File(Constant.fileLS.getAbsolutePath(), Constant.apkName);
+        File file = new File(Constant.fileLS.getAbsolutePath(), Constant.apkNames);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //系统自带安装程序

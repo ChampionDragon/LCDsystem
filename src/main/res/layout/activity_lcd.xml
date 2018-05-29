@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_lcd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
+
     <RelativeLayout
-        android:background="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="22dp">
+        android:layout_height="22dp"
+        android:background="@color/black">
+
         <CheckBox
-            android:buttonTint="@color/blue"
             android:id="@+id/lcdll"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue" />
     </RelativeLayout>
 
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/lcd"
         style="@style/LcdHeightSplit"
         android:layout_weight="1"
-        android:background="@color/blueSky">
+        android:background="@color/blueSky"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/lcdback"
@@ -32,11 +33,11 @@
 
             <ImageView
                 style="@style/LcdMainIv"
-                android:background="@drawable/quit"/>
+                android:background="@drawable/quit" />
 
             <TextView
                 style="@style/LcdMainTv"
-                android:text="退出"/>
+                android:text="退出" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,11 +47,11 @@
 
             <ImageView
                 style="@style/LcdMainIv"
-                android:background="@drawable/find"/>
+                android:background="@drawable/find" />
 
             <TextView
                 style="@style/LcdMainTv"
-                android:text="查看"/>
+                android:text="查看" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,11 +61,11 @@
 
             <ImageView
                 style="@style/LcdMainIv"
-                android:background="@drawable/setting"/>
+                android:background="@drawable/setting" />
 
             <TextView
                 style="@style/LcdMainTv"
-                android:text="设置"/>
+                android:text="设置" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,11 +75,11 @@
 
             <ImageView
                 style="@style/LcdMainIv"
-                android:background="@drawable/switchmode"/>
+                android:background="@drawable/switchmode" />
 
             <TextView
                 style="@style/LcdMainTv"
-                android:text="模式切换"/>
+                android:text="模式切换" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,11 +89,11 @@
 
             <ImageView
                 style="@style/LcdMainIv"
-                android:background="@drawable/videos_screen"/>
+                android:background="@drawable/videos_screen" />
 
             <TextView
                 style="@style/LcdMainTv"
-                android:text="截图"/>
+                android:text="截图" />
         </LinearLayout>
 
     </LinearLayout>
@@ -100,7 +101,7 @@
     <FrameLayout
         android:id="@+id/fragment"
         style="@style/LcdHeightSplit"
-        android:layout_weight="9"/>
+        android:layout_weight="9" />
 
 
 </LinearLayout>

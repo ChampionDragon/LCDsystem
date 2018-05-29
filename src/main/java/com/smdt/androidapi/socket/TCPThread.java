@@ -188,48 +188,93 @@ public class TCPThread {
 
     /*通过发送过来的数据作相应的处理*/
     private String judgement(String str) {
-        String result = "";
-        JSONObject jb;
+        JSONObject jb, resJson;
+        resJson = new JSONObject();
         try {
             JSONObject json = new JSONObject(str);
             String signWay = json.getString(Constant.sign);
+
+            resJson.put(Constant.result, Constant.success);
+
             String params;
             switch (signWay) {
                 case Constant.signdiaCreate:
                     params = json.getString(Constant.params);
                     jb = new JSONObject(params);
                     Logs.i(jb.getString(Constant.diacode) + "  tcpThread183  " + jb.getString(Constant.diastr));
-                    result = Constant.signdiaCreate + "  recSuccess";
 
                     Message msg = handler.obtainMessage(Constant.diaCreate);
                     msg.obj = params;
                     handler.sendMessage(msg);
 
                     break;
+
                 case Constant.signdiaCreateByTime:
                     params = json.getString(Constant.params);
                     jb = new JSONObject(params);
                     Logs.v(jb.getString(Constant.diacode) + "  tcpThread202  " + jb.getString(Constant.diastr)
                             + "   " + Integer.valueOf(jb.getString(Constant.diaDisTime)));
-                    result = Constant.signdiaCreateByTime + "  recSuccess";
 
                     Message msg2 = handler.obtainMessage(Constant.diaCreateByTime);
                     msg2.obj = params;
                     handler.sendMessage(msg2);
 
                     break;
+
                 case Constant.signdiaDis:
-                    result = Constant.signdiaDis + "  recSuccess";
                     handler.sendEmptyMessage(Constant.diaDis);
+                    break;
+
+                case Constant.signUpdateApk:
+
+                    params = json.getString(Constant.apkname);
+                    Logs.i(tag + "231 " + params);
+
+                    Message msg3 = handler.obtainMessage(Constant.UpdateApk);
+                    msg3.obj = params;
+                    handler.sendMessage(msg3);
 
                     break;
+
+                case Constant.signtextDis:
+                    handler.sendEmptyMessage(Constant.textDis);
+                    break;
+
+                case Constant.signtextCreate:
+
+                    params = json.getString(Constant.diastr);
+                    Logs.i(tag + "246 " + params);
+
+                    Message msg4 = handler.obtainMessage(Constant.UpdateApk);
+                    msg4.obj = params;
+                    handler.sendMessage(msg4);
+
+                    break;
+
+                case Constant.signtextCreateByTime:
+                    params = json.getString(Constant.params);
+
+                    Logs.v(tag+" 257  " +params);
+
+                    Message msg5 = handler.obtainMessage(Constant.textDisByTime);
+                    msg5.obj = params;
+                    handler.sendMessage(msg5);
+
+                    break;
+
                 default:
-                    result = Constant.error;
+                    resJson.put(Constant.result, Constant.fail);
+                    resJson.put(Constant.errorstr, "signway is empty");
             }
         } catch (JSONException e) {
-            result = e.toString();
+            try {
+                resJson.put(Constant.result, Constant.fail);
+                resJson.put(Constant.errorstr, e.toString());
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
         }
-        return result;
+        return resJson.toString();
     }
 
 

@@ -19,24 +19,38 @@ public class Constant {
     public static final int diaCreate = 30;
     public static final int diaCreateByTime = 31;
     public static final int diaDis = 32;
+    public static final int UpdateApk = 33;
+    public static final int textCreate = 34;
+    public static final int textDis = 35;
+    public static final int textDisByTime = 36;
+
+    /*客户端请求码signway*/
     public static final String diastr = "dialogString";
     public static final String diacode = "dialogCode";
     public static final String diaDisTime = "dialogDismissTime";
 
+    public static final String signdiaCreate = "diaCreate";
+    public static final String signdiaCreateByTime = "diaCreateByTime";
+    public static final String signdiaDis = "diaDis";
 
-    /*客户端请求码signway*/
-    public static final String signdiaCreate="diaCreate";
-    public static final String signdiaCreateByTime="diaCreateByTime";
-    public static final String signdiaDis ="diaDis";
-    public static final String sign="signway";
-    public static final String params="params";
-    public static final String error="error format";
+    public static final String signUpdateApk = "updateApk";
+    public static final String apkname = "apkname";
 
+    public static final String signtextCreate = "textCreate";
+    public static final String signtextCreateByTime = "textCreateByTime";
+    public static final String signtextDis = "textDis";
 
+    public static final String sign = "signway";
+    public static final String params = "params";
+
+    public static final String success = "success";
+    public static final String fail = "fail";
+    public static final String result = "result";
+    public static final String errorstr = "errorstr";
 
 
     /*设备最为服务端监听的端口号*/
-    public static final String port="26565";
+    public static final String port = "26565";
 
 
     /* 文件夹 */
@@ -47,7 +61,7 @@ public class Constant {
     //视频文件路径
     public final static String viedoPath = fileDir.getAbsolutePath() + File.separator + "1.mp4";
     //APK的名字
-    public final static String apkName = "测试.apk";
+    public final static String apkNames = "测试.apk";
 
     //联胜文件夹
     public final static File fileLS = new File(fileDir.getAbsolutePath(), "联胜智能");

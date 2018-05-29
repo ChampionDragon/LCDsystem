@@ -1,7 +1,6 @@
 package com.smdt.androidapi.lcd;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.smdt.SmdtManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,8 +31,6 @@ import com.smdt.androidapi.base.BaseActivity;
 import com.smdt.androidapi.pickerview.TimePickerView;
 import com.smdt.androidapi.pickerview.other.pickerViewUtil;
 import com.smdt.androidapi.utils.Constant;
-import com.smdt.androidapi.utils.DialogCustomUtil;
-import com.smdt.androidapi.utils.DialogNotileUtil;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.SpUtil;
 import com.smdt.androidapi.utils.TimeUtil;
@@ -61,7 +58,6 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     // 网络连接列表
     private List<WifiConfiguration> mWifiConfiguration;
     private String ssid;//WIFI名
-    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -447,14 +443,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         } else {
-            dialog = DialogCustomUtil.create("警告", "亲，你确定在不开WIFI的情况下能连到网络？",
-                    this, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-            dialog.show();
+            ToastUtil.showLong("未打开WIFI无法连接网络");
         }
         return null;
     }
@@ -465,13 +454,12 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
      */
     private void checkWifiConfiguration(final String SSID) {
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                 if (!networkInfo.isConnected()) {
-                    DialogNotileUtil.show(SetActivity.this, "密码错误，请重新再尝试");
+                    ToastUtil.showLong("密码错误，请重新再尝试");
                 } else {
                     ToastUtil.showLong("连接成功");
                 }
