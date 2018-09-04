@@ -16,6 +16,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 
 /**
@@ -96,10 +97,12 @@ public class UDPThread {
                     BaseApplication.lock.release();
 
                     String strRecv = new String(dPacket.getData(), 0, dPacket.getLength());
-                    Logs.e(tag + "98  接收到的数据  " + strRecv);
+                    Logs.i(tag + "98  接收到的数据  " + strRecv);
+
 
                     recvPort = dPacket.getPort();//客户端的端口
                     addr = dPacket.getAddress();//客户端的ip地址
+                    Logs.v(tag + " 100 ip地址:" + addr + " " + recvPort + "  " + dPacket.getAddress().getHostAddress());
                     /*对接收的数据做相应处理*/
                     judgement(strRecv);
 
@@ -122,7 +125,7 @@ public class UDPThread {
                 try {
                     String ip = BaseApplication.getInstance().getIp();
                     if (ip.equals("0.0.0.0")) {
-                        ip = GetIpAddress.getWiredIP();
+                        ip = GetIpAddress.getWiredIP();//有线（以太网）情况下获取IP
                     }
                     jb.put("ip", ip);
                     jb.put("port", Constant.port);
@@ -153,6 +156,11 @@ public class UDPThread {
     /*发送数据给服务端*/
     private void sendData(String s) {
         byte[] sendBuf = s.getBytes();
+        try {
+            addr = InetAddress.getByName("255.255.255.255");//防止客户端不在同一网段，通过广播回数据信息。
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, addr, recvPort);
         try {
             dSocket.send(sendPacket);

@@ -28,7 +28,7 @@ public class UpdateActivity extends BaseActivity implements View.OnClickListener
     private int myprogress;
     private Dialog apkDia, videoDia;
     private DialogLoading dialoading;
-    String tag = "UpdateActivity";
+    private String tag = "UpdateActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,7 +14,6 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
@@ -28,21 +27,26 @@ import com.smdt.androidapi.lcd.SDKInfoActivity;
 import com.smdt.androidapi.lcd.SetActivity;
 import com.smdt.androidapi.lcd.WifiInfo;
 import com.smdt.androidapi.listener.DiadisListener;
+import com.smdt.androidapi.listener.OnDoubleClickListener;
 import com.smdt.androidapi.socket.TCPThread;
 import com.smdt.androidapi.socket.UDPThread;
 import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.DialogCustomUtil;
 import com.smdt.androidapi.utils.DialogText;
+import com.smdt.androidapi.utils.GetIpAddress;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.NetConnectUtil;
 import com.smdt.androidapi.utils.SmallUtil;
+import com.smdt.androidapi.utils.TimeUtil;
 import com.smdt.androidapi.utils.ToastUtil;
 import com.smdt.androidapi.view.DialogCode;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -61,14 +65,12 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     private UDPThread udpThread;
     private TCPThread tcpThread;
     private LinearLayout lcd;
-    private CheckBox lcdll;
 //    private FrameLayout frameLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_lcd);
         initView();
         smdt = SmdtManager.create(getApplicationContext());
@@ -77,6 +79,21 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         Logs.d(tag + "   onCreate ");
         initUtcp();
         test();
+
+       /* 设置双击监听*/
+        findViewById(R.id.fragment).setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
+            @Override
+            public void onDoubleClick() {
+                if (lcd.isShown()) {
+                    lcd.setVisibility(View.GONE);
+                } else {
+                    lcd.setVisibility(View.VISIBLE);
+                }
+                Logs.i(TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
+            }
+        }));
+
+
     }
 
     /*窗口界面的设置*/
@@ -109,6 +126,42 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     }
 
     private void test() {
+        /*在以太网连接的情况下获取网络数据*/
+        boolean EthernetState = smdt.smdtGetEthernetState();//判断以太网连接的状态
+        Logs.v("太网连接的状态: " + EthernetState);
+        if (EthernetState) {
+            Logs.e("以太网Ip: " + smdt.smdtGetEthIPAddress());
+            Logs.i("以太网Mac: " + smdt.smdtGetEthMacAddress());
+        }
+        /*获取wifi的Ip*/
+        String ip = BaseApplication.getInstance().getIp();
+        if (ip.equals("0.0.0.0")) {
+            ip = GetIpAddress.getWiredIP();//有线（以太网）情况下获取IP
+            Logs.i(tag + "138以太网IP" + ip);
+        }
+        String apkRoot = "chmod 777 " + getPackageCodePath();//getPackageCodePath()来获得当前应用程序对应的 apk 文件的路径
+        boolean b = RootCommand(apkRoot);
+        Logs.v("获取Root权限:"+b);
+        /*设置IP*/
+//        smdt.smdtSetEthIPAddress("192.168.1.100", "255.255.255.0", "192.9.50.1", "202.96.134.133");
+        Logs.d(tag + "143以太网IP" + smdt.smdtGetEthIPAddress());
+
+        /*开机后强制设置 ip、netmask*/
+//        String com="ifconfig eth0 192.168.2.210 netmask 255.255.255.0";
+//        try{
+//            Process suProcess = Runtime.getRuntime().exec("su");//root权限
+//            DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
+//            os.writeBytes(com+ "\n");
+//            os.flush();
+//            os.writeBytes("exit\n");
+//            os.flush();
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
 //        textDia = new DialogText("测试\naaaaaa\nbbbbbbb\ndasdasdsadafgkjgkjhkllsdasdasdasd", this);
         /*六秒钟自动关闭二维码*/
 //        handler.sendEmptyMessageDelayed(1, 6000);
@@ -121,6 +174,43 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //            }
 //        }, 6, 6, TimeUnit.SECONDS);
     }
+
+
+    /**
+     * 应用程序运行命令获取 Root权限，设备必须已破解(获得ROOT权限)
+     * @param command 命令：String apkRoot="chmod 777 "+getPackageCodePath(); RootCommand(apkRoot);
+     * @return 应用程序是/否获取Root权限
+     */
+    public boolean RootCommand(String command) {
+        Process process = null;
+        DataOutputStream os = null;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes(command + "\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            process.waitFor();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Logs.e(tag + "197:\n" + e);
+            return false;
+        } finally {
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Logs.e(tag + "205:\n" + e);
+                }
+            }
+            process.destroy();
+        }
+        Logs.d(tag + "210 Root SUC ");
+        return true;
+    }
+
 
     Handler handler = new Handler() {
         @Override
@@ -377,8 +467,6 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         setMenu.setOnClickListener(this);
         findViewById(R.id.videos_screen).setOnClickListener(this);
         lcd = (LinearLayout) findViewById(R.id.lcd);
-        lcdll = (CheckBox) findViewById(R.id.lcdll);
-        lcdll.setOnClickListener(this);
 //        frameLayout= (FrameLayout) findViewById(R.id.fragment);
     }
 
@@ -541,13 +629,6 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 break;
             case R.id.videos_screen:
                 videoScreen();
-                break;
-            case R.id.lcdll:
-                if (lcdll.isChecked()) {
-                    lcd.setVisibility(View.VISIBLE);
-                } else {
-                    lcd.setVisibility(View.GONE);
-                }
                 break;
         }
     }

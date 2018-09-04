@@ -6,19 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:background="@color/black">
-
-        <CheckBox
-            android:id="@+id/lcdll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/blue" />
-    </RelativeLayout>
-
-
     <LinearLayout
         android:id="@+id/lcd"
         style="@style/LcdHeightSplit"

@@ -267,7 +267,7 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
             vl = SmallUtil.getViedoPath(Constant.PathLS);
 
             /*每次遍历判断是否视频文件被删除了*/
-            Logs.e("每次遍历的大小：" + vl.size() + "   之前遍历的大小" + videoList.size());
+//            Logs.e(tag + "270 每次遍历的大小：" + vl.size() + "   之前遍历的大小" + videoList.size());
             if (vl.size() > videoList.size()) {
                 initUrl();
             }

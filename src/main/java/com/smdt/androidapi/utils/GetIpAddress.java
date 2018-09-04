@@ -35,8 +35,8 @@ public class GetIpAddress {
                     if (mIP.equals("192")) {
                         IP = inetAddress.getHostAddress();    //获取本地IP
                         PORT = serverSocket.getLocalPort();    //获取本地的PORT
-                        Logs.e("IP  "+ IP);
-                        Logs.e("PORT "+ PORT);
+                        Logs.e("IP  " + IP);
+                        Logs.e("PORT " + PORT);
                     }
                 }
             }
@@ -48,9 +48,9 @@ public class GetIpAddress {
 
     public static String getWiredIP() {
         try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
                         return inetAddress.getHostAddress().toString();
@@ -58,19 +58,10 @@ public class GetIpAddress {
                 }
             }
         } catch (Exception e) {
-            Logs.d("有线ip错误原因："+e);
+            Logs.d("有线ip错误原因：" + e);
         }
         return "有线ip地址没找到";
     }
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,29 +11,30 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/codeCross"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_alignRight="@+id/codeIv"
-            android:src="@drawable/cross"/>
+            android:src="@drawable/cross" />
 
         <ImageView
-            android:padding="44dp"
             android:id="@+id/codeIv"
-            android:layout_width="888dp"
+            android:layout_width="match_parent"
             android:layout_height="888dp"
             android:layout_below="@+id/codeCross"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:padding="2dp" />
     </RelativeLayout>
 
 
     <TextView
-        android:textColor="@color/red"
         android:id="@+id/codeTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:text="请扫码付款"
-        android:textSize="66sp"/>
+        android:textColor="@color/red"
+        android:textSize="66sp" />
 
 </LinearLayout>

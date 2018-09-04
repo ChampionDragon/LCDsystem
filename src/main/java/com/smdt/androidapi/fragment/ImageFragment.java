@@ -180,7 +180,7 @@ public class ImageFragment extends Fragment {
             setCurrentDot(imgCurrent);
             String imgPath = imgUrl.get(imgCurrent);
             List<String> il = SmallUtil.getImgPath(Constant.PathLS);
-            Logs.d("每次遍历的大小：" + il.size() + "   之前遍历的大小" + imgsize);
+//            Logs.d(tag+"183 每次遍历的大小：" + il.size() + "   之前遍历的大小" + imgsize);
             if (il.size() > imgsize) {
                 initImgSize();
                 return;

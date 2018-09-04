@@ -109,6 +109,23 @@
         <!-- 背景是否模糊显示 -->
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
+    <!-- 生成二维码Dialog的样式 -->
+    <style name="dialogcode" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowBackground">@color/white</item>
+        <!-- 切记一定要设置为透明状态，不然有阴影 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景是否模糊显示 -->
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+
+
 
     <style name="setTV">
         <item name="android:textColor">@color/blueSky</item>
