@@ -1,6 +1,5 @@
 package com.smdt.androidapi.view;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.smdt.androidapi.LCDActivity;
 import com.smdt.androidapi.R;
 import com.smdt.androidapi.listener.DiadisListener;
 import com.smdt.androidapi.utils.CreateCodeUtil;
 import com.smdt.androidapi.utils.DPUtil;
+import com.smdt.androidapi.utils.Logs;
 
 /**
  * Description: 生成二维码的Dialog
@@ -71,12 +72,13 @@ public class DialogCode {
         dialog.setContentView(view, new LinearLayout.LayoutParams(
                 dm.widthPixels, dm.heightPixels));//LinearLayout.LayoutParams.MATCH_PARENT
         dialog.show();
-        Activity activity = (Activity) context;
+        LCDActivity activity = (LCDActivity) context;
         HideNaviTitle(activity.getWindow().getDecorView());
     }
 
     /*隐藏标题栏导航栏*/
     private void HideNaviTitle(View decorView) {
+        Logs.v(decorView+"  11111111111111111111");
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             decorView.setSystemUiVisibility(View.GONE);
         } else if (Build.VERSION.SDK_INT >= 19) {
@@ -84,6 +86,7 @@ public class DialogCode {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
+            Logs.i(decorView+"  2222222222222222");
         }
     }
 

@@ -1,11 +1,13 @@
 package com.smdt.androidapi.socket;
 
 import android.os.Handler;
+import android.os.Message;
 
 import com.smdt.androidapi.base.BaseApplication;
 import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.GetIpAddress;
 import com.smdt.androidapi.utils.Logs;
+import com.smdt.androidapi.utils.SmallUtil;
 import com.smdt.androidapi.utils.SystemUtil;
 
 import org.json.JSONException;
@@ -87,7 +89,7 @@ public class UDPThread {
     class ReceiveThread extends Thread {
         @Override
         public void run() {
-            byte[] recvBuf = new byte[128];
+            byte[] recvBuf = new byte[999];
             final DatagramPacket dPacket = new DatagramPacket(recvBuf, recvBuf.length);
 
             try {
@@ -130,28 +132,62 @@ public class UDPThread {
                     jb.put("ip", ip);
                     jb.put("port", Constant.port);
                     jb.put("id", SystemUtil.ID());
+                    jb.put("n", SmallUtil.getnetmask());
+                    jb.put("g", SmallUtil.getgateWay());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Logs.e(tag + "128  发送的数据  " + jb.toString());
+                Logs.e(tag + "137  发送的数据  " + jb.toString());
                 sendData(jb.toString());
                 break;
-            case "1002":
-                handler.sendEmptyMessage(Constant.diaCreate);
-                sendData("diaCreate Success");
-                break;
-            case "1003":
-                handler.sendEmptyMessage(Constant.diaCreateByTime);
-                sendData("diaCreateByTime Success");
-                break;
-            case "1004":
-                handler.sendEmptyMessage(Constant.diaDis);
-                sendData("diaDis Success");
-                break;
             default:
-                sendData("error format");
+                String result = JsonStr(strRecv);
+                Logs.e(tag + "143 结果 " + result);
+                sendData(result);
         }
     }
+
+    /*解析Json数据*/
+    private String JsonStr(String strRecv) {
+        JSONObject jb, resJson;
+        resJson = new JSONObject();
+        try {
+            JSONObject json = new JSONObject(strRecv);
+            resJson.put(Constant.result, Constant.success);
+            if (!SystemUtil.ID().equals(json.getString(Constant.devid))) {
+                resJson.put(Constant.result, Constant.fail);
+                resJson.put(Constant.errorstr, "deviceID not identical");
+                return resJson.toString();
+            }
+            String signWay = json.getString(Constant.sign);
+            String params;
+            switch (signWay) {
+                case Constant.signSetIP:
+
+                    params = json.getString(Constant.params);
+                    jb = new JSONObject(params);
+                    Logs.i(jb.getString(Constant.IPstr) + "  166" + tag + jb.getString(Constant.netMaskstr));
+
+                    Message msg = handler.obtainMessage(Constant.setip);
+                    msg.obj = params;
+                    handler.sendMessage(msg);
+                    break;
+                default:
+                    resJson.put(Constant.result, Constant.fail);
+                    resJson.put(Constant.errorstr, "signway is empty");
+            }
+        } catch (JSONException e) {
+            try {
+                resJson.put(Constant.result, Constant.fail);
+                resJson.put(Constant.errorstr, "json error");
+                Logs.e(tag+"180:"+e);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return resJson.toString();
+    }
+
 
     /*发送数据给服务端*/
     private void sendData(String s) {
@@ -168,6 +204,4 @@ public class UDPThread {
             e.printStackTrace();
         }
     }
-
-
 }

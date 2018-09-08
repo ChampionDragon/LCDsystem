@@ -254,7 +254,7 @@ public class TCPThread {
                 case Constant.signtextCreateByTime:
                     params = json.getString(Constant.params);
 
-                    Logs.v(tag+" 257  " +params);
+                    Logs.v(tag + " 257  " + params);
 
                     Message msg5 = handler.obtainMessage(Constant.textDisByTime);
                     msg5.obj = params;

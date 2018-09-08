@@ -44,6 +44,7 @@ import com.smdt.androidapi.view.DialogCode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     private UDPThread udpThread;
     private TCPThread tcpThread;
     private LinearLayout lcd;
+    private String IP, gateWay, netmask;
 //    private FrameLayout frameLayout;
 
 
@@ -92,8 +94,6 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                 Logs.i(TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
             }
         }));
-
-
     }
 
     /*窗口界面的设置*/
@@ -127,24 +127,42 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 
     private void test() {
         /*在以太网连接的情况下获取网络数据*/
-        boolean EthernetState = smdt.smdtGetEthernetState();//判断以太网连接的状态
-        Logs.v("太网连接的状态: " + EthernetState);
-        if (EthernetState) {
-            Logs.e("以太网Ip: " + smdt.smdtGetEthIPAddress());
-            Logs.i("以太网Mac: " + smdt.smdtGetEthMacAddress());
-        }
+//        boolean EthernetState = smdt.smdtGetEthernetState();//判断以太网连接的状态
+//        Logs.v("太网连接的状态: " + EthernetState);
+//        if (EthernetState) {
+//            Logs.e("以太网Ip: " + smdt.smdtGetEthIPAddress());
+//            Logs.i("以太网Mac: " + smdt.smdtGetEthMacAddress());
+//        }
         /*获取wifi的Ip*/
-        String ip = BaseApplication.getInstance().getIp();
-        if (ip.equals("0.0.0.0")) {
-            ip = GetIpAddress.getWiredIP();//有线（以太网）情况下获取IP
-            Logs.i(tag + "138以太网IP" + ip);
+        String devIp = BaseApplication.getInstance().getIp();
+        if (devIp.equals("0.0.0.0")) {
+            devIp = GetIpAddress.getWiredIP();//有线（以太网）情况下获取IP
+            Logs.i(tag + "142以太网IP" + devIp);
         }
-        String apkRoot = "chmod 777 " + getPackageCodePath();//getPackageCodePath()来获得当前应用程序对应的 apk 文件的路径
-        boolean b = RootCommand(apkRoot);
-        Logs.v("获取Root权限:"+b);
-        /*设置IP*/
-//        smdt.smdtSetEthIPAddress("192.168.1.100", "255.255.255.0", "192.9.50.1", "202.96.134.133");
-        Logs.d(tag + "143以太网IP" + smdt.smdtGetEthIPAddress());
+        /*从数据库读取IP判断和现在的设备ip是否相同，防止用户拔掉网线设备ip改变*/
+        if (BaseApplication.sp.getBoolean(Constant.changeIP)) {
+            IP = BaseApplication.sp.getString(Constant.IP);
+            Logs.d("判断现在IP是否和上次保存的IP一致："+IP.equals(devIp)+"\n 现在的ip:"+devIp+"数据库保留的ip:"+IP);
+            if (!IP.equals(devIp)) {
+                netmask = BaseApplication.sp.getString(Constant.netmask);
+                gateWay = BaseApplication.sp.getString(Constant.gateWay);
+                Logs.v(tag+"149:"+netmask+"  "+gateWay);
+                setIP(IP, netmask);
+                SetGateway(gateWay);
+            }
+        }
+        /*获取Root权限*/
+//        String apkRoot = "chmod 777 " + getPackageCodePath();//getPackageCodePath()来获得当前应用程序对应的 apk 文件的路径
+//        boolean b = RootCommand("");
+//        Logs.v("获取Root权限:" + b);
+
+        /*通过SDKz自带方法设置IP*/
+//        try {
+//            smdt.smdtSetEthIPAddress("192.168.1.100", "255.255.255.0", "192.9.50.1", "202.96.134.133");
+//        } catch (Exception e) {
+//            Logs.e(tag + "154: " + e);
+//        }
+//        Logs.d(tag + "155以太网IP" + smdt.smdtGetEthIPAddress());
 
         /*开机后强制设置 ip、netmask*/
 //        String com="ifconfig eth0 192.168.2.210 netmask 255.255.255.0";
@@ -160,8 +178,6 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
-
 //        textDia = new DialogText("测试\naaaaaa\nbbbbbbb\ndasdasdsadafgkjgkjhkllsdasdasdasd", this);
         /*六秒钟自动关闭二维码*/
 //        handler.sendEmptyMessageDelayed(1, 6000);
@@ -175,40 +191,74 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //        }, 6, 6, TimeUnit.SECONDS);
     }
 
+    /*设置IP和子网掩码*/
+    private void setIP(String ip, String netmask) {
+         /*通过shell命令设置IP和netmask*/
+        RootCommand("ifconfig eth0 " + ip + " netmask " + netmask);
+            /*通过shell命令查看IP和netmask*/
+        String result = RootCommand("ifconfig eth0");
+        if (!result.contains(ip)) {
+            setIP(ip, netmask);
+        }
+    }
+
+    /*设置网关*/
+    private void SetGateway(String gateway) {
+       /*通过shell命令设置gateWay*/
+        RootCommand("route add default gw " + gateway + " dev eth0");
+        /*通过shell命令查看gateWay*/
+        String result = RootCommand("ip route show");
+        if (!result.contains(gateway)) {
+            SetGateway(gateway);
+        }
+    }
+
 
     /**
      * 应用程序运行命令获取 Root权限，设备必须已破解(获得ROOT权限)
+     *
      * @param command 命令：String apkRoot="chmod 777 "+getPackageCodePath(); RootCommand(apkRoot);
-     * @return 应用程序是/否获取Root权限
+     * @return 读取的数据
      */
-    public boolean RootCommand(String command) {
+    public String RootCommand(String command) {
+        String result = "";
         Process process = null;
         DataOutputStream os = null;
+        DataInputStream is = null;
         try {
             process = Runtime.getRuntime().exec("su");
             os = new DataOutputStream(process.getOutputStream());
             os.writeBytes(command + "\n");
             os.writeBytes("exit\n");
             os.flush();
-            process.waitFor();
-
+            int aa = process.waitFor();
+//            Logs.w("waitFor():" + aa);
+            is = new DataInputStream(process.getInputStream());
+            byte[] buffer = new byte[is.available()];
+//            Logs.d("大小" + buffer.length);
+            is.read(buffer);
+            String out = new String(buffer);
+            result = out;
+            Logs.e(tag + "245返回:" + out);
         } catch (Exception e) {
             e.printStackTrace();
-            Logs.e(tag + "197:\n" + e);
-            return false;
+            Logs.e(tag + "205:\n" + e);
+            return e.toString();
         } finally {
-            if (os != null) {
-                try {
+            try {
+                if (os != null) {
                     os.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Logs.e(tag + "205:\n" + e);
                 }
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Logs.e(tag + "217:\n" + e);
             }
             process.destroy();
         }
-        Logs.d(tag + "210 Root SUC ");
-        return true;
+        return result;
     }
 
 
@@ -290,9 +340,28 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                         ToastUtil.showLong("发送格式不对");
                     }
                     break;
+                case Constant.setip:
+                    String ipset = (String) msg.obj;
+                    BaseApplication.sp.putBoolean(Constant.changeIP, true);
+                    try {
+                        JSONObject jb = new JSONObject(ipset);
+                        IP = jb.getString(Constant.IPstr);
+                        netmask = jb.getString(Constant.netMaskstr);
+                        gateWay = jb.getString(Constant.gateWaystr);
+                        setIP(IP, netmask);
+                        SetGateway(gateWay);
+                        /*向数据库保存ip,netmask,gaetway*/
+                        BaseApplication.sp.putString(Constant.IP,IP);
+                        BaseApplication.sp.putString(Constant.netmask,netmask);
+                        BaseApplication.sp.putString(Constant.gateWay,gateWay);
 
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    break;
                 default:
-
 //                    if (new Random().nextInt(2) == 1) {
 //                        createTextDialog("测试\naaaaaa\nbbbbbbb\ndasdasdsadafgkjgkjhkllsdasdasdasd"
 //                                + TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
@@ -301,7 +370,6 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //                    }
 
                     break;
-
             }
         }
     };

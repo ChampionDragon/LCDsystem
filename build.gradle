@@ -1,23 +1,37 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'lcd device'
+            keyPassword '171211'
+            storeFile file('C:/Users/Administrator/Desktop/项目签名/lcd.jks')
+            storePassword '171211'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "27.0.2"
     /*禁止gradle严格检查图片的合法性!*/
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
-
     defaultConfig {
         applicationId "com.smdt.androidapi"
         minSdkVersion 17
         targetSdkVersion 23
+        versionCode 0
+        versionName '0.0'
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.config
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
     }
 }
 

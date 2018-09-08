@@ -15,6 +15,8 @@ import android.view.WindowManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,6 +31,7 @@ import java.util.List;
  **/
 
 public class SmallUtil {
+    private static String tag = "SmallUtil";
 
     /**
      * 直接跳转到某个界面
@@ -367,6 +370,66 @@ public class SmallUtil {
 
         }
         return photoFile;
+    }
+
+
+    public static String RootCommand(String command) {
+        String result = "";
+        Process process = null;
+        DataOutputStream os = null;
+        DataInputStream is = null;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes(command + "\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            process.waitFor();
+            is = new DataInputStream(process.getInputStream());
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+            String out = new String(buffer);
+            result = out;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.toString();
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Logs.e(tag + "407:\n" + e);
+            }
+            process.destroy();
+        }
+        return result;
+    }
+
+    /**
+     * 获取子网掩码
+     */
+    public static String getnetmask() {
+        String result = RootCommand("ifconfig eth0");
+        String[] split = result.split(" ");
+//        Logs.w(tag + "418:\n" + Arrays.toString(split) + "\n" + result);
+        result = split[4];
+        return result;
+    }
+
+    /**
+     * 获取网关
+     */
+    public static String getgateWay() {
+        String result = RootCommand("ip route show");
+        String[] split = result.split(" ");
+//        Logs.w(tag + "418:\n" + Arrays.toString(split) + "\n" + result);
+        result = split[2];
+        return result;
     }
 
 
