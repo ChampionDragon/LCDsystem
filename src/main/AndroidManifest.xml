@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.smdt.androidapi"
-    android:versionCode="0"
-    android:versionName="0.0">
+    package="com.smdt.androidapi">
 
-    <uses-sdk
-        android:minSdkVersion="17"
-        android:targetSdkVersion="23" />
     <!-- 使用摄像头的权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />

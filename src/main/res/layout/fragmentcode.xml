@@ -9,17 +9,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-
         <ImageView
-            android:visibility="gone"
-            android:id="@+id/codeCross"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_alignRight="@+id/codeIv"
-            android:src="@drawable/cross" />
-
-        <ImageView
-            android:id="@+id/codeIv"
+            android:id="@+id/fragcodeiv"
             android:layout_width="match_parent"
             android:layout_height="888dp"
             android:layout_below="@+id/codeCross"
@@ -29,7 +20,7 @@
 
 
     <TextView
-        android:id="@+id/codeTv"
+        android:id="@+id/fragcodetv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

@@ -136,10 +136,10 @@ public class TCPThread {
                         byte[] data = new byte[length];
                         System.arraycopy(b, 0, data, 0, length);
                         result = new String(data);
-                        Logs.d("接收到的信息： " + result);
+                        Logs.d(tag + "139 接收到的信息： " + result);
                         Logs.i("客户端ip " + socket.getInetAddress());
                         result = judgement(result);
-                        Logs.e(tag + "136 发送数据  " + result);
+                        Logs.e(tag + "142 发送数据  " + result);
                         PrintWriter pw = new PrintWriter(socket.getOutputStream());
                         pw.write(result);
                         pw.flush();
@@ -200,40 +200,42 @@ public class TCPThread {
             switch (signWay) {
                 case Constant.signdiaCreate:
                     params = json.getString(Constant.params);
-                    jb = new JSONObject(params);
-                    Logs.i(jb.getString(Constant.diacode) + "  tcpThread183  " + jb.getString(Constant.diastr));
-
                     Message msg = handler.obtainMessage(Constant.diaCreate);
                     msg.obj = params;
                     handler.sendMessage(msg);
-
                     break;
 
                 case Constant.signdiaCreateByTime:
                     params = json.getString(Constant.params);
-                    jb = new JSONObject(params);
-                    Logs.v(jb.getString(Constant.diacode) + "  tcpThread202  " + jb.getString(Constant.diastr)
-                            + "   " + Integer.valueOf(jb.getString(Constant.diaDisTime)));
-
                     Message msg2 = handler.obtainMessage(Constant.diaCreateByTime);
                     msg2.obj = params;
                     handler.sendMessage(msg2);
-
                     break;
 
                 case Constant.signdiaDis:
                     handler.sendEmptyMessage(Constant.diaDis);
                     break;
 
+                case Constant.signcodefragDis:
+                    handler.sendEmptyMessage(Constant.codefragDis);
+                    break;
+
+                case Constant.signcodefragCreate:
+                    params = json.getString(Constant.params);
+                    jb = new JSONObject(params);
+                    Logs.i(jb.getString(Constant.codefragcode) + "  tcpThread226  " + jb.getString(Constant.codefragstr));
+
+                    Message msg6 = handler.obtainMessage(Constant.codefragCreate);
+                    msg6.obj = params;
+                    handler.sendMessage(msg6);
+
+                    break;
+
                 case Constant.signUpdateApk:
-
                     params = json.getString(Constant.apkname);
-                    Logs.i(tag + "231 " + params);
-
                     Message msg3 = handler.obtainMessage(Constant.UpdateApk);
                     msg3.obj = params;
                     handler.sendMessage(msg3);
-
                     break;
 
                 case Constant.signtextDis:
@@ -241,11 +243,9 @@ public class TCPThread {
                     break;
 
                 case Constant.signtextCreate:
-
                     params = json.getString(Constant.diastr);
                     Logs.i(tag + "246 " + params);
-
-                    Message msg4 = handler.obtainMessage(Constant.UpdateApk);
+                    Message msg4 = handler.obtainMessage(Constant.textCreate);
                     msg4.obj = params;
                     handler.sendMessage(msg4);
 

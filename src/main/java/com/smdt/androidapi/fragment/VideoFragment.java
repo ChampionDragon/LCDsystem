@@ -93,7 +93,8 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
             videoUrl = videoList.get(videoNum);
             videoURL(videoUrl);
         } else {
-            ShowErrorDialog("不存在");
+//            ShowErrorDialog("不存在");
+            ToastUtil.showLong("通过FTP上传视频资源");
         }
     }
 

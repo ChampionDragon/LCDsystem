@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import com.smdt.androidapi.base.BaseApplication;
+import com.smdt.androidapi.fragment.CodeFragment;
 import com.smdt.androidapi.fragment.ImageFragment;
 import com.smdt.androidapi.fragment.VideoFragment;
 import com.smdt.androidapi.lcd.ApkActivity;
@@ -50,6 +51,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class LCDActivity extends FragmentActivity implements View.OnClickListener {
     private LinearLayout swiMenu, onoffMenu, checkMenu, setMenu;
@@ -62,6 +64,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
     private DialogText textDia;//文字弹框
     public static final String VideoFragment = "videofragment";
     public static final String ImageFragment = "imagefragment";
+    public static final String CodeFragment = "codefragment";
     private Fragment currentFragment;
     private UDPThread udpThread;
     private TCPThread tcpThread;
@@ -135,18 +138,20 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //        }
         /*获取wifi的Ip*/
         String devIp = BaseApplication.getInstance().getIp();
+        Logs.w(tag + " 141WIFI " + devIp);
         if (devIp.equals("0.0.0.0")) {
             devIp = GetIpAddress.getWiredIP();//有线（以太网）情况下获取IP
-            Logs.i(tag + "142以太网IP" + devIp);
+            Logs.i(tag + " 143以太网IP " + devIp);
         }
         /*从数据库读取IP判断和现在的设备ip是否相同，防止用户拔掉网线设备ip改变*/
         if (BaseApplication.sp.getBoolean(Constant.changeIP)) {
             IP = BaseApplication.sp.getString(Constant.IP);
-            Logs.d("判断现在IP是否和上次保存的IP一致："+IP.equals(devIp)+"\n 现在的ip:"+devIp+"数据库保留的ip:"+IP);
+            Logs.d("判断现在IP是否和上次保存的IP一致：" + IP.equals(devIp)
+                    + "\n 现在的ip:" + devIp + "数据库保留的ip:" + IP);
             if (!IP.equals(devIp)) {
                 netmask = BaseApplication.sp.getString(Constant.netmask);
                 gateWay = BaseApplication.sp.getString(Constant.gateWay);
-                Logs.v(tag+"149:"+netmask+"  "+gateWay);
+                Logs.v(tag + "149:" + netmask + "  " + gateWay);
                 setIP(IP, netmask);
                 SetGateway(gateWay);
             }
@@ -182,7 +187,7 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         /*六秒钟自动关闭二维码*/
 //        handler.sendEmptyMessageDelayed(1, 6000);
 //        Logs.d(TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
-        /*每隔3秒钟更换二维码*/
+        /*每隔3秒钟测试handler的default*/
 //        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new Runnable() {
 //            @Override
 //            public void run() {
@@ -284,11 +289,34 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                             JSONObject jb = new JSONObject(params);
                             createCodeDialog(jb.getString(Constant.diacode), jb.getString(Constant.diastr));
                         } catch (JSONException e) {
-                            Logs.e(tag + "109  " + e);
+                            Logs.e(tag + " 292 " + e);
                         }
                     } else {
                         ToastUtil.showLong("发送格式不对");
                     }
+                    break;
+                case Constant.codefragCreate:
+                    String paramcodefragcreate = (String) msg.obj;
+
+                    if (paramcodefragcreate != null) {
+                        try {
+                            JSONObject jb = new JSONObject(paramcodefragcreate);
+                            String fragcode = jb.getString(Constant.codefragcode);
+                            String fragcodestr = jb.getString(Constant.codefragstr);
+                            setCodeFragment(fragcode, fragcodestr);
+                            BaseApplication.sp.putString(Constant.fragcodestr, fragcodestr);
+                            BaseApplication.sp.putString(Constant.fragcode, fragcode);
+                        } catch (JSONException e) {
+                            Logs.e(tag + " 292 " + e);
+                        }
+                    } else {
+                        ToastUtil.showLong("发送格式不对");
+                    }
+                    break;
+
+                case Constant.codefragDis:
+                    ChangeFragment(ImageFragment);
+                    BaseApplication.sp.remove(Constant.fragcode);
                     break;
 
                 case Constant.diaCreateByTime:
@@ -351,15 +379,13 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
                         setIP(IP, netmask);
                         SetGateway(gateWay);
                         /*向数据库保存ip,netmask,gaetway*/
-                        BaseApplication.sp.putString(Constant.IP,IP);
-                        BaseApplication.sp.putString(Constant.netmask,netmask);
-                        BaseApplication.sp.putString(Constant.gateWay,gateWay);
+                        BaseApplication.sp.putString(Constant.IP, IP);
+                        BaseApplication.sp.putString(Constant.netmask, netmask);
+                        BaseApplication.sp.putString(Constant.gateWay, gateWay);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                     break;
                 default:
 //                    if (new Random().nextInt(2) == 1) {
@@ -368,7 +394,14 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //                    } else {
 //                        closeTextDialog();
 //                    }
-
+//                    setCodeFragment("lcb", TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
+                    if (new Random().nextInt(5) == 1) {
+                        ChangeFragment(ImageFragment);
+                    } else if (new Random().nextInt(5) == 2) {
+                        ChangeFragment(VideoFragment);
+                    } else {
+                        setCodeFragment("lcb", TimeUtil.long2time(System.currentTimeMillis(), Constant.formatPhoto));
+                    }
                     break;
             }
         }
@@ -489,7 +522,12 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
 //        imagefragment = new ImageFragment();
 //        videofragment = new VideoFragment();
 //        transaction.add(R.id.fragment, imagefragment).commit();
-        ChangeFragment(ImageFragment);
+        String fragcode = BaseApplication.sp.getString(Constant.fragcode);
+        if (fragcode.length() > 0) {
+            setCodeFragment(fragcode, BaseApplication.sp.getString(Constant.fragcodestr));
+        } else {
+            ChangeFragment(ImageFragment);
+        }
     }
 
     public void ChangeFragment(String flag) {
@@ -519,8 +557,34 @@ public class LCDActivity extends FragmentActivity implements View.OnClickListene
         } else {
             transaction.add(R.id.fragment, fragment, flag);
         }
+        Logs.v(tag + currentFragment + " 523 " + fragment);
         currentFragment = fragment;
         transaction.commit();
+    }
+
+    /*创建二维码的fragment*/
+    public void setCodeFragment(String iv, String tv) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment fragment = getFragmentManager().findFragmentByTag(CodeFragment);
+        Logs.v(currentFragment + " 532 " + fragment + "  " + String.valueOf(currentFragment == fragment));
+        if (currentFragment != fragment && currentFragment != null) {
+            currentFragment.onPause();
+            transaction.hide(currentFragment);
+        }
+        if (fragment == null) {
+            fragment = new CodeFragment(iv, tv);
+            Logs.e(fragment + "   540");
+            transaction.add(R.id.fragment, fragment, CodeFragment);
+        } else {
+            ((CodeFragment) fragment).updateData(tv, iv);
+        }
+//        else {
+//            fragment = new CodeFragment(iv, tv);
+//            transaction.replace(R.id.fragment, fragment, CodeFragment);
+//        }
+        transaction.show(fragment);
+        transaction.commit();
+        currentFragment = fragment;
     }
 
 

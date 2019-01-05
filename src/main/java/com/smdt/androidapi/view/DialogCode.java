@@ -78,7 +78,7 @@ public class DialogCode {
 
     /*隐藏标题栏导航栏*/
     private void HideNaviTitle(View decorView) {
-        Logs.v(decorView+"  11111111111111111111");
+        Logs.v(decorView + "  11111111111111111111");
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             decorView.setSystemUiVisibility(View.GONE);
         } else if (Build.VERSION.SDK_INT >= 19) {
@@ -86,7 +86,7 @@ public class DialogCode {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
-            Logs.i(decorView+"  2222222222222222");
+            Logs.i(decorView + "  2222222222222222");
         }
     }
 
@@ -95,7 +95,6 @@ public class DialogCode {
         Bitmap qrCodeBitmap = CreateCodeUtil.createQRCode(str, DPUtil.dip2px(context, 666),
                 DPUtil.dip2px(context, 666), BitmapFactory.decodeResource(context.getResources(), R.drawable.bs_login));
         return qrCodeBitmap;
-
     }
 
     /*更新二维码*/

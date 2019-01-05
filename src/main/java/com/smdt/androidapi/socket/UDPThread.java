@@ -99,7 +99,7 @@ public class UDPThread {
                     BaseApplication.lock.release();
 
                     String strRecv = new String(dPacket.getData(), 0, dPacket.getLength());
-                    Logs.i(tag + "98  接收到的数据  " + strRecv);
+                    Logs.i(tag + "98  接收到的数据  " + strRecv+"\n  数据的长度："+dPacket.getData().length);
 
 
                     recvPort = dPacket.getPort();//客户端的端口
@@ -166,7 +166,7 @@ public class UDPThread {
 
                     params = json.getString(Constant.params);
                     jb = new JSONObject(params);
-                    Logs.i(jb.getString(Constant.IPstr) + "  166" + tag + jb.getString(Constant.netMaskstr));
+                    Logs.i(jb.getString(Constant.IPstr) + "  166  " + tag + jb.getString(Constant.netMaskstr));
 
                     Message msg = handler.obtainMessage(Constant.setip);
                     msg.obj = params;

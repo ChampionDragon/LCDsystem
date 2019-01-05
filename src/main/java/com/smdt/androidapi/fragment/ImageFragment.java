@@ -19,6 +19,7 @@ import com.smdt.androidapi.utils.Constant;
 import com.smdt.androidapi.utils.DialogCustomUtil;
 import com.smdt.androidapi.utils.Logs;
 import com.smdt.androidapi.utils.SmallUtil;
+import com.smdt.androidapi.utils.ToastUtil;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -68,7 +69,8 @@ public class ImageFragment extends Fragment {
         Logs.v("数量 " + Arrays.toString(imgUrl.toArray()));
         imgsize = imgUrl.size();
         if (imgUrl.size() == 0) {
-            ShowDialog("未搜索到图片资源文件\n是否启用FTP服务器接收文件");
+//            ShowDialog("未搜索到图片资源文件\n是否启用FTP服务器接收文件");
+            ToastUtil.showLong("通过FTP上传图片资源");
         } else {
             initView();
         }
@@ -182,11 +184,13 @@ public class ImageFragment extends Fragment {
             List<String> il = SmallUtil.getImgPath(Constant.PathLS);
 //            Logs.d(tag+"183 每次遍历的大小：" + il.size() + "   之前遍历的大小" + imgsize);
             if (il.size() > imgsize) {
+                imgCurrent = 0;
                 initImgSize();
                 return;
             }
 
             if (!SmallUtil.fileIsExists(imgPath)) {
+                imgCurrent = 0;
                 initImgSize();
                 return;
             }

@@ -91,8 +91,8 @@ public class CreateCodeUtil {
         if (logoWidth == 0 || logoHeight == 0) {
             return src;
         }
-        //logo大小为二维码整体大小的1/5
-        float scaleFactor = srcWidth * 1.0f / 5 / logoWidth;
+        //logo大小为二维码整体大小的1/2
+        float scaleFactor = srcWidth * 1.0f/2/ logoWidth;
         bitmap = null;
         bitmap = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
         try {

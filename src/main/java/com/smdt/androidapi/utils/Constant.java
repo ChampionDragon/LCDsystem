@@ -24,6 +24,8 @@ public class Constant {
     public static final int textDis = 35;
     public static final int textDisByTime = 36;
     public static final int setip = 37;
+    public static final int codefragCreate= 38;
+    public static final int codefragDis= 39;
 
     /*客户端请求码signway*/
     public static final String signSetIP = "setip";//设置ip的标志
@@ -31,6 +33,12 @@ public class Constant {
     public static final String gateWaystr = "g";
     public static final String netMaskstr = "n";
     public static final String devid = "d";
+
+    public static final String signcodefragCreate="codefragCreate";
+    public static final String signcodefragDis="codefragDis";
+    public static final String codefragstr ="codefragstr";
+    public static final String codefragcode ="codefragcode";
+
 
     public static final String diastr = "dialogString";
     public static final String diacode = "dialogCode";
@@ -120,4 +128,7 @@ public class Constant {
     public static final String IP = "ip";//设置Ip
     public static final String gateWay = "gateway";//设置网管
     public static final String netmask = "netmask";//设置子网掩码
+    public static final String fragcodestr = "fragcodestr";//二维码碎片的字符串
+    public static final String fragcode = "fragcode";//二维码碎片的二维码
+
 }
