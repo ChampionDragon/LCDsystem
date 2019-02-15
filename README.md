@@ -6,7 +6,7 @@
 
 ##  提示为搜索到数据
 
-![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%871.png"演示图片")
+![程序的演示图片](https://github.com/ChampionDragon/LCDsystem/blob/master/UI/%E5%9B%BE%E7%89%871.png "演示图片")
 
 ##  设置选项 
 
